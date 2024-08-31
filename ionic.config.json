@@ -1,0 +1,7 @@
+{
+  "name": "kikirikalarm-mobile",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
