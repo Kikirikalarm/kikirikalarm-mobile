@@ -1,0 +1,18 @@
+@use '@angular/material' as mat;
+
+$heading-font-family: "'lato', sans-serif";
+
+$my-app-typography: mat.define-typography-config(
+    $headline-1: mat.define-typography-level(32px, $font-family: $heading-font-family),
+    $headline-2: mat.define-typography-level(28px, $font-family: $heading-font-family),
+    $headline-3: mat.define-typography-level(24px, $font-family: $heading-font-family),
+    $headline-4: mat.define-typography-level(20px, $font-family: $heading-font-family),
+    $headline-5: mat.define-typography-level(16px, $font-family: $heading-font-family),
+    $headline-6: mat.define-typography-level(12px, $font-family: $heading-font-family),
+    $subtitle-1: mat.define-typography-level(16px, $font-family: $heading-font-family),
+    $subtitle-2: mat.define-typography-level(14px, $font-family: $heading-font-family),
+    $body-1: mat.define-typography-level(16px, $font-family: $heading-font-family),
+    $body-2: mat.define-typography-level(14px, $font-family: $heading-font-family),
+    $caption: mat.define-typography-level(12px, $font-family: $heading-font-family),
+    $button: mat.define-typography-level(12px, $font-family: $heading-font-family),
+);

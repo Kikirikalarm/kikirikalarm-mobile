@@ -1,0 +1,41 @@
+@use "@angular/material" as mat;
+@use "../styles/typography/config" as typography;
+
+@include mat.core();
+
+// Define tus paletas de colores
+$app-primary: mat.define-palette(mat.$teal-palette, 700);
+$app-accent: mat.define-palette(mat.$cyan-palette, 800);
+$app-warn: mat.define-palette(mat.$red-palette, A700);
+
+// Define el tema claro
+$light-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $app-primary,
+      accent: $app-accent,
+      warn: $app-warn
+    ),
+    typography: typography.$my-app-typography,
+    density: 0
+  )
+);
+
+// Define el tema oscuro
+$dark-theme: mat.define-dark-theme(
+  (
+    color: (
+      primary: $app-primary,
+      accent: $app-accent,
+      warn: $app-warn
+    ),
+    typography: typography.$my-app-typography,
+    density: 0
+  )
+);
+//  @include mat.all-component-themes($light-theme);
+@include mat.all-component-themes($light-theme);
+// Dark Theme
+.dark-theme {
+  @include mat.all-component-colors($dark-theme);
+}
