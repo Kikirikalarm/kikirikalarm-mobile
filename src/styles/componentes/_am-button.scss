@@ -1,0 +1,13 @@
+@use "@angular/material" as mat;
+
+// Mixin para el borde de 25px
+@mixin border-25 {
+  border-radius: 25px !important;
+}
+
+.mat-mdc-raised-button,
+.mat-mdc-unelevated-button,
+.mat-mdc-outlined-button,
+.mdc-button.mat-mdc-button {
+  @include border-25;
+}

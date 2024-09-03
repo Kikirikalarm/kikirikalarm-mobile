@@ -1,0 +1,61 @@
+$dark-primary-text: rgba(black, 0.87);
+$dark-secondary-text: rgba(black, 0.54);
+$dark-disabled-text: rgba(black, 0.38);
+$dark-dividers: rgba(black, 0.12);
+$dark-focused: rgba(black, 0.12);
+$light-primary-text: white;
+$light-secondary-text: rgba(white, 0.7);
+$light-disabled-text: rgba(white, 0.5);
+$light-dividers: rgba(white, 0.12);
+$light-focused: rgba(white, 0.12);
+
+
+$blue-primary: (
+  50: #dff5f9,
+  100: #b1e6ef,
+  200: #7fd6e4,
+  300: #50c5d8,
+  400: #32bacf,
+  500: #23aec7,
+  600: #219fb4,
+  700: #1d8a9b,
+  800: #1a7783,
+  900: #155459,
+  contrast: (
+    50: $dark-primary-text,
+    100: $dark-primary-text,
+    200: $dark-primary-text,
+    300: $dark-primary-text,
+    400: $dark-primary-text,
+    500: $dark-primary-text,
+    600: $dark-primary-text,
+    700: $light-primary-text,
+    800: $light-primary-text,
+    900: $light-primary-text,
+  ),
+);
+
+$orange-secondary: (
+  50: #fce9e6,
+  100: #ffccba,
+  200: #ffab8e,
+  300: #ff8b61,
+  400: #ff713d,
+  500: #ff5818,
+  600: #f45214,
+  700: #e64b0e,
+  800: #d94409,
+  900: #c03600,
+  contrast: (
+    50: $dark-primary-text,
+    100: $dark-primary-text,
+    200: $dark-primary-text,
+    300: $dark-primary-text,
+    400: $dark-primary-text,
+    500: $dark-primary-text,
+    600: $dark-primary-text,
+    700: $light-primary-text,
+    800: $light-primary-text,
+    900: $light-primary-text,
+  ),
+)

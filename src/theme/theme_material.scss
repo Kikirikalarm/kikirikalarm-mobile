@@ -1,11 +1,12 @@
 @use "@angular/material" as mat;
 @use "../styles/typography/config" as typography;
+@import "../styles/colors/am-colors";
 
 @include mat.core();
 
 // Define tus paletas de colores
-$app-primary: mat.define-palette(mat.$teal-palette, 700);
-$app-accent: mat.define-palette(mat.$cyan-palette, 800);
+$app-primary: mat.define-palette($blue-primary, 800);
+$app-accent: mat.define-palette($orange-secondary, 700);
 $app-warn: mat.define-palette(mat.$red-palette, A700);
 
 // Define el tema claro
