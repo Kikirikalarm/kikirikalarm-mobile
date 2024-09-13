@@ -1,5 +1,5 @@
 @use "@angular/material" as mat;
-
+@import "../colors/am-colors";
 // Mixin para el borde de 25px
 @mixin border-25 {
   border-radius: 25px !important;
@@ -10,4 +10,11 @@
 .mat-mdc-outlined-button,
 .mdc-button.mat-mdc-button {
   @include border-25;
+}
+
+
+// Estilo personalizado para el botón
+.my-custom-button {
+  background-color: #e600ff !important; // Color de fondo personalizado
+  color: white !important; // Color del texto
 }

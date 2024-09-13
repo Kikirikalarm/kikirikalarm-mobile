@@ -58,4 +58,30 @@ $orange-secondary: (
     800: $light-primary-text,
     900: $light-primary-text,
   ),
-)
+);
+
+$purple-primary: (
+  50: #dff5f9,
+  100: #b1e6ef,
+  200: #7fd6e4,
+  300: #50c5d8,
+  400: #32bacf,
+  500: #23aec7,
+  600: #b221b4,
+  700: #1d8a9b,
+  800: #1a7783,
+  900: #155459,
+  contrast: (
+    50: $dark-primary-text,
+    100: $dark-primary-text,
+    200: $dark-primary-text,
+    300: $dark-primary-text,
+    400: $dark-primary-text,
+    500: $dark-primary-text,
+    600: $dark-primary-text,
+    700: $light-primary-text,
+    800: $light-primary-text,
+    900: $light-primary-text,
+  ),
+);
+

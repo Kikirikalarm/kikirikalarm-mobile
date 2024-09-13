@@ -4,8 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from './material.module';
 import { RouterModule } from '@angular/router';
 import { FullCalendarModule } from '@fullcalendar/angular';
-
-
+import { MAT_COLOR_FORMATS, NgxMatColorPickerModule, NGX_MAT_COLOR_FORMATS } from '@angular-material-components/color-picker';
 @NgModule({
   declarations: [],
   imports: [
@@ -14,14 +13,19 @@ import { FullCalendarModule } from '@fullcalendar/angular';
     ReactiveFormsModule,
     MaterialModule,
     RouterModule,
-    FullCalendarModule
+    FullCalendarModule,
+    NgxMatColorPickerModule
   ],
   exports: [
     FormsModule,
     ReactiveFormsModule,
     MaterialModule,
     RouterModule,
-    FullCalendarModule
-  ]
+    FullCalendarModule,
+    NgxMatColorPickerModule
+  ],
+  providers: [
+    { provide: MAT_COLOR_FORMATS, useValue: NGX_MAT_COLOR_FORMATS }
+  ],
 })
 export class SharedModule { }

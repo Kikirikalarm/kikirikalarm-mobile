@@ -15,7 +15,8 @@
 
   <div id="container">
     <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer"
+        href="https://ionicframework.com/docs/components">UI Components</a></p>
     <h1 class="text-3xl font-bold underline">
       Hello world!
     </h1>
@@ -31,8 +32,8 @@
     <p>
       <mat-form-field appearance="outline">
         <mat-label>Outline form field</mat-label>
-        <input matInput placeholder="Placeholder">
-        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+        <input matInput placeholder="Placeholder" [(ngModel)]="textInput">
+        <mat-icon matSuffix (click)="startListening()">mic</mat-icon>
         <mat-hint>Hint</mat-hint>
       </mat-form-field>
     </p>
@@ -54,6 +55,7 @@
       <div class="example-button-row">
         <button mat-raised-button>Basic</button>
         <button mat-raised-button color="primary">Primary</button>
+        <button mat-raised-button class="my-custom-button">prueba</button>
         <button mat-raised-button color="accent">Accent</button>
         <button mat-raised-button color="warn">Warn</button>
         <button mat-raised-button disabled>Disabled</button>
@@ -113,8 +115,9 @@
       <div class="example-button-row">
         <div class="example-flex-container">
           <div class="example-button-container">
-            <button mat-fab color="primary" aria-label="Example icon button with a delete icon">
-              <mat-icon>delete</mat-icon>
+            <button mat-fab color="primary" aria-label="Example icon button with a delete icon"
+              (click)="startListening()">
+              <mat-icon>mic</mat-icon>
             </button>
           </div>
           <div class="example-button-container">
@@ -157,14 +160,62 @@
           </div>
           <div class="example-button-container">
             <button mat-mini-fab disabled aria-label="Example icon button with a home icon">
-              <mat-icon>home</mat-icon>
+              <mat-icon>check_circle</mat-icon>
             </button>
             <button mat-mini-fab disabled aria-label="Example icon button with a home icon">
-              <mat-icon class="rounded-icon">home</mat-icon>
+              <mat-icon class="rounded-icon">check_circle</mat-icon>
+            </button>
+            <button mat-mini-fab disabled aria-label="Example icon button with a home icon">
+              <mat-icon class="material-symbols-rounded">check_circle</mat-icon>
             </button>
           </div>
+          <!-- <mat-form-field appearance="outline">
+            <input matInput [ngxMatColorPicker]="picker" [formControl]="colorCtr">
+            <ngx-mat-color-toggle matSuffix [for]="picker"></ngx-mat-color-toggle>
+            <ngx-mat-color-picker #picker></ngx-mat-color-picker>
+          </mat-form-field> -->
         </div>
       </div>
     </section>
+
+    <p>
+      <mat-form-field appearance="outline">
+        <mat-label>Outline form field</mat-label>
+        <input matInput placeholder="Placeholder" [ngxMatColorPicker]="picker" [formControl]="colorCtr">
+        <ngx-mat-color-toggle matSuffix [for]="picker"></ngx-mat-color-toggle>
+        <ngx-mat-color-picker #picker></ngx-mat-color-picker>
+        <mat-hint>Hint</mat-hint>
+      </mat-form-field>
+    </p>
+
+
+    <p>
+      <mat-form-field appearance="outline">
+        <mat-label>Outline form field</mat-label>
+        <input matInput placeholder="Placeholder" [(ngModel)]="textInput">
+        <mat-icon matSuffix (click)="startListening()">mic</mat-icon>
+        <mat-hint>Hint</mat-hint>
+      </mat-form-field>
+    </p>
+
+    error: <br>
+    <pre>{{error | json}}</pre>
+    <pre>{{hasPermission | json}}</pre>
+
+
+    <mat-form-field style="display:none">
+      <mat-label>Enter a date range</mat-label>
+      <mat-date-range-input [rangePicker]="picker2">
+        <input matStartDate placeholder="Start date">
+        <input matEndDate placeholder="End date">
+      </mat-date-range-input>
+      <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
+      <mat-date-range-picker [touchUi]="true" #picker2></mat-date-range-picker>
+    </mat-form-field>
+
+    <button (click)="picker2.open()">Prueba 2</button>
+
+
   </div>
 </ion-content>
