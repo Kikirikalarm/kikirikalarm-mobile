@@ -12,8 +12,10 @@
 @import "@ionic/angular/css/flex-utils.css";
 @import "@ionic/angular/css/palettes/dark.system.css";
 
-
+//importaciones de componentes
 @import "styles/componentes/am-button";
+@import "styles/full-calendar.scss";
+
 
 @tailwind base;
 @tailwind components;
@@ -63,4 +65,15 @@ ion-tab-bar {
   --color-selected: #ffffff; /* Color de las pestañas seleccionadas */
   --border-color: #ffffff; /* Color del indicador de selección */
   --indicator-color: #ffffff; /* Color del indicador debajo de la pestaña */
+}
+
+:root {
+  --fc-text-color: #000000; /* Color de texto en tema claro */
+  --fc-background-color: #ffffff; /* Fondo en tema claro */
+}
+
+/* Tema oscuro */
+[theme="dark"] {
+  --fc-text-color: #ffffff; /* Color de texto en tema oscuro */
+  --fc-background-color: #333333; /* Fondo en tema oscuro */
 }

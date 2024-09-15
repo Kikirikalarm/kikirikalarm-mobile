@@ -1,3 +1,56 @@
-<p>
-  agenda works!
-</p>
+<div class="p-2 flex flex-col">
+  <div class="flex">
+    <span class="text-4xl font-bold">Agenda</span>
+  </div>
+  <div class="flex flex-col gap-4">
+    <div class="w-full">
+      <div class="flex items-center justify-between">
+        <button mat-button (click)="openModal()">
+          <span class="text-base"> {{ currentDate | date: 'MMMM yyyy' }}</span>
+        </button>
+        <div>
+          <button mat-icon-button (click)="prevMonth()">
+            <mat-icon>arrow_back_ios_new</mat-icon>
+          </button>
+          <button mat-icon-button>
+            <mat-icon>28</mat-icon>
+          </button>
+          <button mat-icon-button (click)="nextMonth()">
+            <mat-icon>arrow_forward_ios </mat-icon>
+          </button>
+        </div>
+      </div>
+      <div #calendarContainer class="container-calendar">
+        <full-calendar #calendar class="custom-calendar" [options]="calendarOptions"></full-calendar>
+      </div>
+    </div>
+    <div id="container-tareas" class="container-tareas flex flex-col px-3 gap-3">
+      <div *ngFor="let item of arrayTareas; let i=index" class="flex flex-1 w-full items-center justify-center gap-4 ">
+        <div class="flex flex-col items-center justify-center">
+          <span class="text-sm font-bold">Lun</span>
+          <span class="text-sm font-bold">5</span>
+        </div>
+        <div class="flex w-full">
+          <mat-card class="w-full">
+            <div class="flex w-full items-center justify-between p-1">
+              <div class="flex">
+                <div class="flex items-center justify-center">
+                  <mat-icon class="text-sm">medication_liquid</mat-icon>
+                </div>
+                <div class="flex flex-col">
+                  <span class="text-sm">Nombre Alarma</span>
+                  <span class="text-sm">11:00</span>
+                </div>
+              </div>
+              <div class="flex">
+                <button mat-icon-button color="warn">
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </div>
+            </div>
+          </mat-card>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

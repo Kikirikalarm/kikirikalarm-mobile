@@ -1,0 +1,11 @@
+
+.container-calendar{
+  border-top: 1px solid #ddd !important;
+  border-bottom: 1px solid #ddd  !important;
+  margin: 4px 0px  !important;
+}
+
+.container-tareas {
+  height: calc(100vh - 450px);
+  overflow-y: scroll;
+}

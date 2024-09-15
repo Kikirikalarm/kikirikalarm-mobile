@@ -1,0 +1,64 @@
+.custom-calendar {
+  .fc-daygrid-day-events {
+    min-height: 0.6em !important;
+    display: flex;
+    justify-content: center;
+  }
+
+  .fc-daygrid-day-top {
+    justify-content: center;
+  }
+
+  a {
+    background-color: transparent;
+    color: #000000;
+  }
+  .fc-daygrid-dot-event {
+    .fc-event-title {
+      display: none;
+    }
+  }
+  .fc-daygrid-event-dot {
+    margin: 0px 0px;
+  }
+  td,
+  th {
+    border: 0px solid #000000 !important;
+  }
+  fc-daygrid-day-bottom {
+    display: none;
+    margin: 0px 0px;
+  }
+  a.fc-event.fc-event-start.fc-event-end.fc-event-future.fc-daygrid-event.fc-daygrid-dot-event {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 0px;
+    margin-left: 2px;
+  }
+
+  .fc-daygrid-day-events {
+    height: 0px;
+  }
+
+  .fc-daygrid-day-bottom{
+    margin: 0px 0px;
+    display: none;
+  }
+  .fc-daygrid-day.fc-day-today {
+    background-color: #1a788459;
+  }
+}
+
+.fc-theme-standard .fc-scrollgrid {
+  border: 0px solid var(--fc-border-color);
+}
+
+@media (prefers-color-scheme: dark) {
+  .custom-calendar {
+    a {
+      background-color: transparent;
+      color: #ffffff;
+    }
+  }
+}

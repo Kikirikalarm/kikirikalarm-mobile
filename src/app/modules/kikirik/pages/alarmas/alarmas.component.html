@@ -1,3 +1,34 @@
-<p>
-  alarmas works!
-</p>
+<div class="h-full p-2">
+  <div class="flex">
+    <span class="text-4xl font-bold mb-2">KikirikAlarm</span>
+  </div>
+  <div class="flex flex-col">
+    <mat-card>
+      <div class="flex flex-row p-1">
+        <div class="flex flex-col w-1/2">
+          <div class="flex">
+            <mat-icon class="material-symbols-rounded text-sm text-center">work</mat-icon>
+            <span class="text-sm">Trabajo</span>
+          </div>
+          <div class="flex items-center">
+            <span class="text-2xl mr-1 font-bold">07:00</span>
+            <mat-icon class="material-symbols-rounded">sunny</mat-icon>
+          </div>
+          <div>
+            <span class="text-xs">lun, mar, mié, jue, vie</span>
+          </div>
+        </div>
+        <div class="flex items-center justify-center gap-1 w-1/2">
+          <button mat-icon-button color="primary">
+            <mat-icon class="material-symbols-rounded">edit</mat-icon>
+          </button>
+          <button mat-icon-button color="warn">
+            <mat-icon class="material-symbols-rounded">delete</mat-icon>
+          </button>
+          <mat-slide-toggle [hideIcon]="true" color="primary" class="mb-1"></mat-slide-toggle>
+        </div>
+      </div>
+
+    </mat-card>
+  </div>
+</div>
