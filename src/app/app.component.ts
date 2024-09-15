@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginService } from './modules/login/services/login.service';
+import { MatIconRegistry } from '@angular/material/icon';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-root',
@@ -10,8 +12,11 @@ import { LoginService } from './modules/login/services/login.service';
 export class AppComponent implements OnInit {
   constructor(
     private router: Router,
-    private loginService: LoginService
+    private loginService: LoginService,
+    iconRegistry: MatIconRegistry,
+    sanitizer: DomSanitizer
   ) {
+    this.registryIcons(iconRegistry, sanitizer);
     this.initializeApp();
   }
 
@@ -44,5 +49,20 @@ export class AppComponent implements OnInit {
     } else {
       this.router.navigate(['/login']);
     }
+  }
+
+  registryIcons(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer) {
+    iconRegistry.addSvgIcon(
+      'google',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/kikirik/icons/google.svg')
+    );
+    iconRegistry.addSvgIcon(
+      'facebook',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/kikirik/icons/facebook.svg')
+    );
+    iconRegistry.addSvgIcon(
+      'apple',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/kikirik/icons/apple.svg')
+    );
   }
 }

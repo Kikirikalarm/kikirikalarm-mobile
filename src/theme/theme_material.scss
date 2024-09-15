@@ -40,3 +40,14 @@ $dark-theme: mat.define-dark-theme(
 .dark-theme {
   @include mat.all-component-colors($dark-theme);
 }
+
+.light-theme {
+  --text-color: black;
+  --line-color: black;
+}
+
+// Variables de color para tema oscuro
+.dark-theme {
+  --text-color: white;
+  --line-color: white;
+}

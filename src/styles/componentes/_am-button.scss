@@ -12,9 +12,23 @@
   @include border-25;
 }
 
-
 // Estilo personalizado para el botón
 .my-custom-button {
   background-color: #e600ff !important; // Color de fondo personalizado
+  color: white !important; // Color del texto
+}
+
+.button-google {
+  background-color: #296cea !important; // Color de fondo de Google
+  color: white !important; // Color del texto
+}
+
+.button-facebook {
+  background-color: #4063b3 !important; // Color de fondo de Facebook
+  color: white !important; // Color del texto
+}
+
+.button-apple {
+  background-color: #000000 !important; // Color de fondo de Twitter
   color: white !important; // Color del texto
 }
