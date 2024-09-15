@@ -5,6 +5,7 @@ import { MaterialModule } from './material.module';
 import { RouterModule } from '@angular/router';
 import { FullCalendarModule } from '@fullcalendar/angular';
 import { MAT_COLOR_FORMATS, NgxMatColorPickerModule, NGX_MAT_COLOR_FORMATS } from '@angular-material-components/color-picker';
+import { IonicModule } from '@ionic/angular';
 @NgModule({
   declarations: [],
   imports: [
@@ -13,16 +14,18 @@ import { MAT_COLOR_FORMATS, NgxMatColorPickerModule, NGX_MAT_COLOR_FORMATS } fro
     ReactiveFormsModule,
     MaterialModule,
     RouterModule,
+    IonicModule,
     FullCalendarModule,
-    NgxMatColorPickerModule
+    NgxMatColorPickerModule,
   ],
   exports: [
     FormsModule,
     ReactiveFormsModule,
     MaterialModule,
     RouterModule,
+    IonicModule,
     FullCalendarModule,
-    NgxMatColorPickerModule
+    NgxMatColorPickerModule,
   ],
   providers: [
     { provide: MAT_COLOR_FORMATS, useValue: NGX_MAT_COLOR_FORMATS }

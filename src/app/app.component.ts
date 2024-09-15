@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { LoginService } from './modules/login/services/login.service';
 
 @Component({
   selector: 'app-root',
@@ -6,8 +8,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  constructor() {
+  constructor(
+    private router: Router,
+    private loginService: LoginService
+  ) {
     this.initializeApp();
+  }
+
+  ngOnInit() {
+    const isDarkTheme = localStorage.getItem('isDarkTheme') === 'true';
+    this.toggleMaterialTheme(isDarkTheme);
+    this.validarStateLogin();
   }
 
   initializeApp() {
@@ -26,8 +37,12 @@ export class AppComponent implements OnInit {
     localStorage.setItem('isDarkTheme', isDark.toString());
   }
 
-  ngOnInit() {
-    const isDarkTheme = localStorage.getItem('isDarkTheme') === 'true';
-    this.toggleMaterialTheme(isDarkTheme);
+  validarStateLogin() {
+    const isLoggedIn = this.loginService.isLoggedIn();
+    if (isLoggedIn) {
+      this.router.navigate(['/kikirik']);
+    } else {
+      this.router.navigate(['/login']);
+    }
   }
 }
