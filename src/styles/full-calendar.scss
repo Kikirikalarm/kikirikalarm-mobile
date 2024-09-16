@@ -34,11 +34,12 @@
     align-items: center;
     justify-content: center;
     margin-right: 0px;
-    margin-left: 2px;
+    margin-left: 0px;
   }
 
   .fc-daygrid-day-events {
-    height: 0px;
+    height: 12px;
+    // width: 0px;
   }
 
   .fc-daygrid-day-bottom{
@@ -47,12 +48,40 @@
   }
   .fc-daygrid-day.fc-day-today {
     background-color: #1a788459;
+    border-radius: 4px;
+    padding: auto;
   }
+  .fc-daygrid-event-harness {
+    width: 14px;
+}
 }
 
 .fc-theme-standard .fc-scrollgrid {
   border: 0px solid var(--fc-border-color);
 }
+
+/* Evitar cambios de estilo al hacer clic en un evento */
+.fc-event {
+  background-color: initial !important;  /* No cambiar el fondo */
+  border: none !important;               /* Eliminar bordes */
+  box-shadow: none !important;           /* Eliminar sombras */
+  outline: none !important;              /* Evitar outline de selección */
+}
+
+/* Evitar cambios de estilo cuando el evento es clickeado */
+.fc-event:focus, .fc-event:active {
+  background-color: initial !important;  /* Mantener el fondo sin cambios */
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+/* Estilo para el día seleccionado */
+.fc-day-selected {
+  background-color: #1a7884b5 !important;
+  border-radius: 4px !important;
+}
+
 
 @media (prefers-color-scheme: dark) {
   .custom-calendar {

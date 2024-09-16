@@ -54,15 +54,15 @@ export class AppComponent implements OnInit {
   registryIcons(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer) {
     iconRegistry.addSvgIcon(
       'google',
-      sanitizer.bypassSecurityTrustResourceUrl('assets/kikirik/icons/google.svg')
+      sanitizer.bypassSecurityTrustResourceUrl('assets/kikirik/social-icons/google.svg')
     );
     iconRegistry.addSvgIcon(
       'facebook',
-      sanitizer.bypassSecurityTrustResourceUrl('assets/kikirik/icons/facebook.svg')
+      sanitizer.bypassSecurityTrustResourceUrl('assets/kikirik/social-icons/facebook.svg')
     );
     iconRegistry.addSvgIcon(
       'apple',
-      sanitizer.bypassSecurityTrustResourceUrl('assets/kikirik/icons/apple.svg')
+      sanitizer.bypassSecurityTrustResourceUrl('assets/kikirik/social-icons/apple.svg')
     );
   }
 }
