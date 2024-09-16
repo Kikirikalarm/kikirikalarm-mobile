@@ -16,7 +16,6 @@
 @import "styles/componentes/am-button";
 @import "styles/full-calendar.scss";
 
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -40,16 +39,16 @@ body {
 }
 
 .standard-icon {
-  font-family: 'Material Icons', sans-serif;
+  font-family: "Material Icons", sans-serif;
 }
 
 .rounded-icon {
-  font-family: 'Material Icons Round', sans-serif;
+  font-family: "Material Icons Round", sans-serif;
   font-variation-settings:
-  'FILL' 0,
-  'wght' 400,
-  'GRAD' 0,
-  'opsz' 40
+    "FILL" 0,
+    "wght" 400,
+    "GRAD" 0,
+    "opsz" 40;
 }
 
 .example-content {

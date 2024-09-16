@@ -6,6 +6,9 @@ import esLocale from '@fullcalendar/core/locales/es';
 import interactionPlugin, { DateClickArg } from '@fullcalendar/interaction';
 import { cl } from '@fullcalendar/core/internal-common';
 import { Gesture, GestureController } from '@ionic/angular';
+import { MatDialog } from '@angular/material/dialog';
+import { SeleccionHoraDialogComponent } from '../../components/seleccion-hora-dialog/seleccion-hora-dialog.component';
+import { EventImpl } from '@fullcalendar/core/internal';
 
 @Component({
   selector: 'app-agenda',
@@ -16,8 +19,10 @@ export class AgendaComponent implements AfterViewInit, OnInit {
   currentDate: Date = new Date();
   @ViewChild('calendar') calendarComponent!: FullCalendarComponent;
   @ViewChild('calendarContainer', { static: false }) calendarContainer!: ElementRef;
-  arrayTareas = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31];
-  selectedDate: string | null = null;
+  arrayTareas = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  selectedDateStr: string | null = null;
+  selectedDate: Date | null = this.currentDate;
+  eventsSelectedDate: EventImpl[] = [];
   calendarOptions: CalendarOptions = {
     initialView: 'dayGridMonth',
     headerToolbar: false,
@@ -167,10 +172,13 @@ export class AgendaComponent implements AfterViewInit, OnInit {
   constructor(
     private cdr: ChangeDetectorRef,
     private gestureCtrl: GestureController,
+    public dialog: MatDialog
   ) { }
 
   ngOnInit() {
-    console.log("inicio");
+    setTimeout(() => {
+      this.findCalendarEventsByDate(this.currentDate);
+    }, 0);
   }
 
   ngAfterViewInit() {
@@ -184,11 +192,12 @@ export class AgendaComponent implements AfterViewInit, OnInit {
   }
 
   handleDateClick(clickInfo: any) {
+    console.log("clicinfo", clickInfo);
     const clickedDate = clickInfo.dateStr;
-
+    const date = clickInfo.date;
     // Eliminar la clase "fc-day-selected" de cualquier día previamente seleccionado
-    if (this.selectedDate) {
-      const prevSelectedDay = document.querySelector(`.fc-daygrid-day[data-date='${this.selectedDate}']`);
+    if (this.selectedDateStr) {
+      const prevSelectedDay = document.querySelector(`.fc-daygrid-day[data-date='${this.selectedDateStr}']`);
       if (prevSelectedDay) {
         prevSelectedDay.classList.remove('fc-day-selected');
       }
@@ -201,7 +210,9 @@ export class AgendaComponent implements AfterViewInit, OnInit {
     }
 
     // Almacenar el día seleccionado
-    this.selectedDate = clickedDate;
+    this.selectedDateStr = clickedDate;
+    this.selectedDate = date;
+    this.findCalendarEventsByDate(this.selectedDate!);
   }
 
   allowOneDaySelection(selectInfo: any) {
@@ -212,13 +223,28 @@ export class AgendaComponent implements AfterViewInit, OnInit {
   handleEventClick(clickInfo: any) {
     clickInfo.jsEvent.preventDefault();
     clickInfo.jsEvent.cancelBubble = true;
+    console.log("clickInfoEvent", clickInfo);
     // Obtener la fecha del evento y llamar a `handleDateClick`
-    const eventDate = clickInfo.event.startStr;  // Obtener la fecha del evento
-    this.handleDateClick({ dateStr: eventDate });  // Reutilizar la lógica de `dateClick`
+    const eventDate = clickInfo.event.startStr;
+    const start = clickInfo.event.start;  // Obtener la fecha del evento
+    this.handleDateClick({ dateStr: eventDate, date: start });  // Reutilizar la lógica de `dateClick`
   }
 
-  async openModal() {
-    console.log("openModal");
+  openModal() {
+    const dialogRef = this.dialog.open(SeleccionHoraDialogComponent, {
+      data: { selectedDate: this.selectedDate },
+      width: '300px',
+      height: 'auto'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        console.log('The dialog was closed', result);
+        this.selectedDate = new Date(result);
+        this.currentDate = new Date(result);
+        this.updateCalendar();
+      }
+    });
   }
 
   handleSwipe(ev: any) {
@@ -227,6 +253,11 @@ export class AgendaComponent implements AfterViewInit, OnInit {
     } else if (ev.startX > ev.currentX) {
       this.nextMonth();
     }
+  }
+
+  todaySelected() {
+    this.currentDate = new Date();
+    this.updateCalendar();
   }
 
   prevMonth() {
@@ -247,6 +278,19 @@ export class AgendaComponent implements AfterViewInit, OnInit {
       calendarApi.gotoDate(this.currentDate);
       this.cdr.detectChanges()
     }
+  }
+
+  findCalendarEventsByDate(date: Date) {
+    const calendarApi = this.calendarComponent.getApi();
+    const events = calendarApi.getEvents();
+
+    // Filtrar eventos por la fecha especificada
+    const filteredEvents = events.filter(event => {
+      const eventStart = event.start ? new Date(event.start) : null;
+      return eventStart && eventStart.toDateString() === date.toDateString();
+    });
+    this.eventsSelectedDate = filteredEvents;
+    console.log('Eventos del calendario para la fecha', date.toDateString(), ':', filteredEvents);
   }
 
 }

@@ -8,13 +8,13 @@
         <button mat-button (click)="openModal()">
           <span class="text-base"> {{ currentDate | date: 'MMMM yyyy' }}</span>
         </button>
-        <div class="flex gap-12">
+        <div class="flex gap-1">
           <button mat-icon-button (click)="prevMonth()">
             <mat-icon>arrow_back_ios_new</mat-icon>
           </button>
-          <!-- <button mat-icon-button>
-            <mat-icon>28</mat-icon>
-          </button> -->
+          <button mat-icon-button (click)="todaySelected()">
+            <span class="icon-today">{{currentDate | date:'dd'}}</span>
+          </button>
           <button mat-icon-button (click)="nextMonth()">
             <mat-icon>arrow_forward_ios </mat-icon>
           </button>
@@ -25,10 +25,11 @@
       </div>
     </div>
     <div id="container-tareas" class="container-tareas flex flex-col px-3 gap-3">
-      <div *ngFor="let item of arrayTareas; let i=index" class="flex flex-1 w-full items-center justify-center gap-4 ">
+      <div *ngFor="let item of eventsSelectedDate; let i=index"
+        class="flex w-full items-start justify-center gap-4 ">
         <div class="flex flex-col items-center justify-center">
-          <span class="text-sm font-bold">Lun</span>
-          <span class="text-sm font-bold">5</span>
+          <span class="text-sm font-bold">{{item.start | date:'ccc'}}</span>
+          <span class="text-sm font-bold">{{item.start | date:'dd'}}</span>
         </div>
         <div class="flex w-full">
           <mat-card class="w-full">
@@ -51,6 +52,13 @@
           </mat-card>
         </div>
       </div>
+
+      <div *ngIf="eventsSelectedDate.length === 0">
+        <div class="flex items-center justify-center">
+          <span class="text-sm">No hay tareas para este día</span>
+        </div>
+      </div>
+
     </div>
   </div>
 </div>
