@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { LoginService } from './modules/login/services/login.service';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
+import { ScreenOrientation } from '@capacitor/screen-orientation';
+import { Platform } from '@ionic/angular';
 
 @Component({
   selector: 'app-root',
@@ -14,7 +16,8 @@ export class AppComponent implements OnInit {
     private router: Router,
     private loginService: LoginService,
     iconRegistry: MatIconRegistry,
-    sanitizer: DomSanitizer
+    sanitizer: DomSanitizer,
+    private platform: Platform
   ) {
     this.registryIcons(iconRegistry, sanitizer);
     this.initializeApp();
@@ -32,6 +35,10 @@ export class AppComponent implements OnInit {
 
     prefersDark.addEventListener('change', (mediaQuery) => {
       this.toggleMaterialTheme(mediaQuery.matches);
+    });
+    this.platform.ready().then(() => {
+      // Bloquear la orientación en modo vertical
+      ScreenOrientation.lock({ orientation: 'portrait' });
     });
   }
 
