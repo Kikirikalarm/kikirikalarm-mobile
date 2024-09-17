@@ -5,6 +5,8 @@ import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ScreenOrientation } from '@capacitor/screen-orientation';
 import { Platform } from '@ionic/angular';
+import { AlarmasService } from './modules/kikirik/services/alarmas.service';
+import { MarcadorService } from './modules/kikirik/services/marcador.service';
 
 @Component({
   selector: 'app-root',
@@ -17,7 +19,9 @@ export class AppComponent implements OnInit {
     private loginService: LoginService,
     iconRegistry: MatIconRegistry,
     sanitizer: DomSanitizer,
-    private platform: Platform
+    private platform: Platform,
+    private alarmasService: AlarmasService,
+    private marcadorService: MarcadorService
   ) {
     this.registryIcons(iconRegistry, sanitizer);
     this.initializeApp();
@@ -27,6 +31,7 @@ export class AppComponent implements OnInit {
     const isDarkTheme = localStorage.getItem('isDarkTheme') === 'true';
     this.toggleMaterialTheme(isDarkTheme);
     this.validarStateLogin();
+    this.obtenerData();
   }
 
   initializeApp() {
@@ -71,5 +76,10 @@ export class AppComponent implements OnInit {
       'apple',
       sanitizer.bypassSecurityTrustResourceUrl('assets/kikirik/social-icons/apple.svg')
     );
+  }
+
+  async obtenerData() {
+    await this.alarmasService.getAlarmasService();
+    await this.marcadorService.getMarcadorService();
   }
 }

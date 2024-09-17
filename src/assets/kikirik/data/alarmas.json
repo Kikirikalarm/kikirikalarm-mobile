@@ -1,0 +1,391 @@
+[
+  {
+    "id": 1,
+    "nombre": "Despertador diario",
+    "hora": "07:30",
+    "activa": true,
+    "horaDate": "2024-09-17T07:30:00",
+    "dias": {
+      "lunes": true,
+      "martes": true,
+      "miercoles": true,
+      "jueves": true,
+      "viernes": true,
+      "sabado": false,
+      "domingo": false
+    },
+    "marcador": {
+      "nombre": "Trabajo",
+      "icono": "work",
+      "color": "#FF0000"
+    },
+    "pausas": [
+      {
+        "fechaInicial": "2024-09-01T00:00:00",
+        "fechaFinal": "2024-09-10T00:00:00"
+      },
+      {
+        "fechaInicial": "2024-11-15T00:00:00"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "nombre": "Recordar reunión",
+    "hora": "15:00",
+    "activa": false,
+    "horaDate": "2024-10-20T15:00:00",
+    "dias": {
+      "lunes": false,
+      "martes": true,
+      "miercoles": false,
+      "jueves": true,
+      "viernes": false,
+      "sabado": false,
+      "domingo": false
+    },
+    "marcador": {
+      "nombre": "Reunión",
+      "icono": "adaptive_audio_mic",
+      "color": "#00FF00"
+    },
+    "pausas": [
+      {
+        "fechaInicial": "2024-10-25T00:00:00",
+        "fechaFinal": "2024-11-05T00:00:00"
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "nombre": "Cocinar cena",
+    "hora": "18:30",
+    "activa": true,
+    "horaDate": "2024-12-15T18:30:00",
+    "dias": {
+      "lunes": false,
+      "martes": false,
+      "miercoles": true,
+      "jueves": true,
+      "viernes": false,
+      "sabado": true,
+      "domingo": false
+    },
+    "marcador": {
+      "nombre": "Cocinar",
+      "icono": "skillet",
+      "color": "#FFA500"
+    },
+    "pausas": [
+      {
+        "fechaInicial": "2024-12-01T00:00:00"
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "nombre": "Entrenamiento matutino",
+    "hora": "06:00",
+    "activa": true,
+    "horaDate": "2024-08-05T06:00:00",
+    "dias": {
+      "lunes": true,
+      "martes": false,
+      "miercoles": true,
+      "jueves": false,
+      "viernes": true,
+      "sabado": true,
+      "domingo": false
+    },
+    "marcador": {
+      "nombre": "Ejercicio",
+      "icono": "exercise",
+      "color": "#00FFFF"
+    },
+    "pausas": [
+      {
+        "fechaInicial": "2024-08-15T00:00:00",
+        "fechaFinal": "2024-08-20T00:00:00"
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "nombre": "Estudiar",
+    "hora": "19:00",
+    "activa": false,
+    "horaDate": "2024-09-10T19:00:00",
+    "dias": {
+      "lunes": true,
+      "martes": true,
+      "miercoles": false,
+      "jueves": true,
+      "viernes": false,
+      "sabado": false,
+      "domingo": false
+    },
+    "marcador": {
+      "nombre": "Estudio",
+      "icono": "school",
+      "color": "#0000FF"
+    },
+    "pausas": [
+      {
+        "fechaInicial": "2024-10-01T00:00:00"
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "nombre": "Recordar medicinas",
+    "hora": "08:00",
+    "activa": true,
+    "horaDate": "2024-11-01T08:00:00",
+    "dias": {
+      "lunes": true,
+      "martes": true,
+      "miercoles": true,
+      "jueves": true,
+      "viernes": true,
+      "sabado": false,
+      "domingo": false
+    },
+    "marcador": {
+      "nombre": "Salud",
+      "icono": "medication_liquid",
+      "color": "#FF00FF"
+    },
+    "pausas": [
+      {
+        "fechaInicial": "2024-12-01T00:00:00",
+        "fechaFinal": "2024-12-10T00:00:00"
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "nombre": "Llamar a mamá",
+    "hora": "20:00",
+    "activa": false,
+    "horaDate": "2024-08-15T20:00:00",
+    "dias": {
+      "lunes": false,
+      "martes": true,
+      "miercoles": false,
+      "jueves": true,
+      "viernes": false,
+      "sabado": false,
+      "domingo": true
+    },
+    "marcador": {
+      "nombre": "Familia",
+      "icono": "pregnant_woman",
+      "color": "#FF69B4"
+    },
+    "pausas": [
+      {
+        "fechaInicial": "2024-09-01T00:00:00",
+        "fechaFinal": "2024-09-05T00:00:00"
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "nombre": "Sacar la basura",
+    "hora": "21:00",
+    "activa": true,
+    "horaDate": "2024-10-01T21:00:00",
+    "dias": {
+      "lunes": false,
+      "martes": false,
+      "miercoles": false,
+      "jueves": false,
+      "viernes": true,
+      "sabado": false,
+      "domingo": true
+    },
+    "marcador": {
+      "nombre": "Hogar",
+      "icono": "cleaning_services",
+      "color": "#808080"
+    },
+    "pausas": []
+  },
+  {
+    "id": 9,
+    "nombre": "Revisión del coche",
+    "hora": "10:00",
+    "activa": true,
+    "horaDate": "2024-09-25T10:00:00",
+    "dias": {
+      "lunes": false,
+      "martes": true,
+      "miercoles": false,
+      "jueves": true,
+      "viernes": false,
+      "sabado": false,
+      "domingo": false
+    },
+    "marcador": {
+      "nombre": "Coche",
+      "icono": "local_car_wash",
+      "color": "#00FF7F"
+    },
+    "pausas": [
+      {
+        "fechaInicial": "2024-09-28T00:00:00",
+        "fechaFinal": "2024-10-05T00:00:00"
+      }
+    ]
+  },
+  {
+    "id": 10,
+    "nombre": "Reunión semanal",
+    "hora": "14:00",
+    "activa": true,
+    "horaDate": "2024-11-10T14:00:00",
+    "dias": {
+      "lunes": false,
+      "martes": true,
+      "miercoles": false,
+      "jueves": false,
+      "viernes": true,
+      "sabado": false,
+      "domingo": false
+    },
+    "marcador": {
+      "nombre": "Reunión",
+      "icono": "groups_3",
+      "color": "#FFD700"
+    },
+    "pausas": [
+      {
+        "fechaInicial": "2024-11-20T00:00:00"
+      }
+    ]
+  },
+  {
+    "id": 11,
+    "nombre": "Tomar agua",
+    "hora": "11:00",
+    "activa": true,
+    "horaDate": "2024-08-10T11:00:00",
+    "dias": {
+      "lunes": true,
+      "martes": true,
+      "miercoles": true,
+      "jueves": true,
+      "viernes": true,
+      "sabado": false,
+      "domingo": false
+    },
+    "marcador": {
+      "nombre": "Salud",
+      "icono": "local_drink",
+      "color": "#1E90FF"
+    },
+    "pausas": [
+      {
+        "fechaInicial": "2024-09-01T00:00:00"
+      }
+    ]
+  },
+  {
+    "id": 12,
+    "nombre": "Tiempo de lectura",
+    "hora": "17:30",
+    "activa": true,
+    "horaDate": "2024-09-05T17:30:00",
+    "dias": {
+      "lunes": false,
+      "martes": false,
+      "miercoles": true,
+      "jueves": false,
+      "viernes": true,
+      "sabado": true,
+      "domingo": true
+    },
+    "marcador": {
+      "nombre": "Lectura",
+      "icono": "menu_book",
+      "color": "#8B4513"
+    },
+    "pausas": [
+      {
+        "fechaInicial": "2024-10-10T00:00:00",
+        "fechaFinal": "2024-10-15T00:00:00"
+      }
+    ]
+  },
+  {
+    "id": 13,
+    "nombre": "Pasear al perro",
+    "hora": "19:00",
+    "activa": true,
+    "horaDate": "2024-07-15T19:00:00",
+    "dias": {
+      "lunes": true,
+      "martes": true,
+      "miercoles": true,
+      "jueves": true,
+      "viernes": true,
+      "sabado": true,
+      "domingo": true
+    },
+    "marcador": {
+      "nombre": "Mascotas",
+      "icono": "sound_detection_dog_barking",
+      "color": "#32CD32"
+    },
+    "pausas": []
+  },
+  {
+    "id": 14,
+    "nombre": "Comprar víveres",
+    "hora": "10:30",
+    "activa": false,
+    "horaDate": "2024-08-22T10:30:00",
+    "dias": {
+      "lunes": false,
+      "martes": false,
+      "miercoles": true,
+      "jueves": true,
+      "viernes": false,
+      "sabado": false,
+      "domingo": false
+    },
+    "marcador": {
+      "nombre": "Compras",
+      "icono": "shopping_cart",
+      "color": "#FF6347"
+    },
+    "pausas": [
+      {
+        "fechaInicial": "2024-09-15T00:00:00",
+        "fechaFinal": "2024-09-20T00:00:00"
+      }
+    ]
+  },
+  {
+    "id": 15,
+    "nombre": "Revisión de correo",
+    "hora": "09:00",
+    "activa": true,
+    "horaDate": "2024-12-01T09:00:00",
+    "dias": {
+      "lunes": false,
+      "martes": false,
+      "miercoles": false,
+      "jueves": false,
+      "viernes": false,
+      "sabado": false,
+      "domingo": false
+    },
+    "marcador": {
+      "nombre": "Trabajo",
+      "icono": "local_post_office",
+      "color": "#4682B4"
+    },
+    "pausas": []
+  }
+]

@@ -1,18 +1,20 @@
-<div class="h-full p-2">
+<div class="h-full p-2 overflow-y-auto">
   <div class="flex">
     <span class="text-4xl font-bold mb-2">KikirikAlarm</span>
   </div>
   <div class="flex flex-col gap-2">
-    <mat-card>
+    <mat-card *ngFor="let alarma of alarmas">
       <div class="flex flex-col p-1">
         <div class="flex">
-          <mat-icon class="material-symbols-rounded text-sm text-center">work</mat-icon>
-          <span class="text-sm">Trabajo</span>
+          <mat-icon class="material-symbols-rounded text-sm text-center"
+            [ngStyle]="{color:alarma.marcador.color }">{{alarma.marcador.icono}}</mat-icon>
+          <span class="text-sm">{{alarma.nombre}}</span>
         </div>
         <div class="flex justify-between">
           <div class="flex items-center">
-            <span class="text-3xl mr-1 font-bold">07:00</span>
-            <mat-icon class="material-symbols-rounded text-3xl" style="width: 2rem; height: 2rem;">sunny</mat-icon>
+            <span class="text-3xl mr-1 font-bold">{{alarma.hora}}</span>
+            <mat-icon class="material-symbols-rounded text-3xl"
+              style="width: 2rem; height: 2rem;">{{iconoHora(alarma)}}</mat-icon>
           </div>
           <div class="flex items-center justify-center gap-1 w-1/2">
             <button mat-icon-button color="primary">
@@ -25,7 +27,7 @@
           </div>
         </div>
         <div class="flex">
-          <span class="text-sm">lun, mar, mié, jue, vie</span>
+          <span class="text-sm">{{obtenerDiasRecurrentes(alarma)}}</span>
         </div>
       </div>
     </mat-card>

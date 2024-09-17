@@ -5,7 +5,7 @@
   <br>
   <div *ngIf="controlDate" mat-dialog-content>
     <ion-datetime class="custom-picker" id="datetime-full-calendar" presentation="month-year"
-      [formControl]="controlDate"></ion-datetime>
+      [formControl]="controlDate" [max]="maxYear" [min]="minYear"></ion-datetime>
   </div>
 
   <div *ngIf="controlDate" mat-dialog-actions>

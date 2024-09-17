@@ -17,7 +17,7 @@
       <input matInput placeholder="Contraseña" autocomplete="current-password" [type]="hide ? 'password' : 'text'"
         formControlName="password">
       <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Passwor Oculta'"
-        [attr.aria-pressed]="hide">
+        [attr.aria-pressed]="hide" type="button">
         <mat-icon class="material-symbols-rounded">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
       </button>
       <mat-hint>Ingrese su contraseña</mat-hint>

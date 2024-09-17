@@ -1,0 +1,72 @@
+[
+  {
+    "nombre": "Trabajo",
+    "icono": "work",
+    "color": "#FF0000"
+  },
+  {
+    "nombre": "Reunión",
+    "icono": "adaptive_audio_mic",
+    "color": "#00FF00"
+  },
+  {
+    "nombre": "Cocinar",
+    "icono": "skillet",
+    "color": "#FFA500"
+  },
+  {
+    "nombre": "Ejercicio",
+    "icono": "exercise",
+    "color": "#00FFFF"
+  },
+  {
+    "nombre": "Estudio",
+    "icono": "school",
+    "color": "#0000FF"
+  },
+  {
+    "nombre": "Salud",
+    "icono": "medication_liquid",
+    "color": "#FF00FF"
+  },
+  {
+    "nombre": "Familia",
+    "icono": "pregnant_woman",
+    "color": "#FF69B4"
+  },
+  {
+    "nombre": "Hogar",
+    "icono": "cleaning_services",
+    "color": "#808080"
+  },
+  {
+    "nombre": "Reunión",
+    "icono": "groups_3",
+    "color": "#FFD700"
+  },
+  {
+    "nombre": "Salud",
+    "icono": "local_drink",
+    "color": "#1E90FF"
+  },
+  {
+    "nombre": "Lectura",
+    "icono": "menu_book",
+    "color": "#8B4513"
+  },
+  {
+    "nombre": "Mascotas",
+    "icono": "sound_detection_dog_barking",
+    "color": "#32CD32"
+  },
+  {
+    "nombre": "Compras",
+    "icono": "shopping_cart",
+    "color": "#FF6347"
+  },
+  {
+    "nombre": "Trabajo",
+    "icono": "local_post_office",
+    "color": "#4682B4"
+  }
+]

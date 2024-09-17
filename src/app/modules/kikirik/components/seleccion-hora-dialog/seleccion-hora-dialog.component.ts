@@ -9,6 +9,9 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 })
 export class SeleccionHoraDialogComponent implements OnInit {
   controlDate?: FormControl;
+  currentYear = new Date().getFullYear();
+  maxYear = `${this.currentYear + 20}-12-31`;
+  minYear = `${this.currentYear - 20}-01-01`;
 
   constructor(
     public dialogRef: MatDialogRef<SeleccionHoraDialogComponent>,
