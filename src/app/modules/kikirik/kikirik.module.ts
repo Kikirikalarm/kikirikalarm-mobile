@@ -10,6 +10,9 @@ import { AlarmasComponent } from './pages/alarmas/alarmas.component';
 import { ConfiguracionComponent } from './pages/configuracion/configuracion.component';
 import { IonicModule } from '@ionic/angular';
 import { SeleccionHoraDialogComponent } from './components/seleccion-hora-dialog/seleccion-hora-dialog.component';
+import { EditarAlarmaComponent } from './pages/editar-alarma/editar-alarma.component';
+import { CrearAlarmaComponent } from './pages/crear-alarma/crear-alarma.component';
+import { VistaPreviaAlarmaComponent } from './pages/vista-previa-alarma/vista-previa-alarma.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +20,10 @@ import { SeleccionHoraDialogComponent } from './components/seleccion-hora-dialog
     AgendaComponent,
     AlarmasComponent,
     ConfiguracionComponent,
-    SeleccionHoraDialogComponent
+    SeleccionHoraDialogComponent,
+    EditarAlarmaComponent,
+    CrearAlarmaComponent,
+    VistaPreviaAlarmaComponent
   ],
   imports: [
     IonicModule,

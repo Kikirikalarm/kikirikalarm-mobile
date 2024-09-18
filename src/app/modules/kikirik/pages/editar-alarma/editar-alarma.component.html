@@ -1,0 +1,23 @@
+<ion-header style="box-shadow: none !important;">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <button mat-icon-button (click)="cancel()" type="button">
+        <mat-icon class="material-symbols-rounded">arrow_back</mat-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>Editar Alarma</ion-title>
+    <ion-buttons slot="end">
+      <button mat-icon-button (click)="confirm()" type="button">
+        <mat-icon class="material-symbols-rounded" style="color: #ffffffbd;">save</mat-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+  <form [formGroup]="form" (ngSubmit)="confirm()">
+    <input type="time" #inputTime class="hidden">
+    <button mat-button (click)="inputTime.click()" type="button">abrir hora</button>
+
+    <app-selector-dias-concurrentes formControlName="days"></app-selector-dias-concurrentes>
+  </form>
+</ion-content>
