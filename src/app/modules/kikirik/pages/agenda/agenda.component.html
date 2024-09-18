@@ -12,6 +12,7 @@
           <button mat-icon-button (click)="prevMonth()">
             <mat-icon>arrow_back_ios_new</mat-icon>
           </button>
+          <!-- <button mat-button (click)="todaySelected()">Hoy</button> -->
           <button mat-icon-button (click)="todaySelected()">
             <span class="icon-today">{{currentDate | date:'dd'}}</span>
           </button>
@@ -59,6 +60,9 @@
         </div>
       </div>
 
+    </div>
+    <div class="float-button" (click)="mostrarCrear()">
+      <button mat-fab><mat-icon class="material-symbols-rounded">add</mat-icon></button>
     </div>
   </div>
 </div>

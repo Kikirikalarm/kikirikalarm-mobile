@@ -16,14 +16,15 @@
             <mat-icon class="material-symbols-rounded text-3xl"
               style="width: 2rem; height: 2rem;">{{iconoHora(alarma)}}</mat-icon>
           </div>
-          <div class="flex items-center justify-center gap-1 w-1/2">
-            <button mat-icon-button color="primary">
+          <div class="flex items-center justify-end gap-1 w-1/2">
+            <button mat-icon-button color="primary" (click)="mostrarEditar(alarma)">
               <mat-icon class="material-symbols-rounded">edit</mat-icon>
             </button>
-            <button mat-icon-button color="warn">
+            <button mat-icon-button color="warn" (click)="eliminarAlarma(alarma)">
               <mat-icon class="material-symbols-rounded">delete</mat-icon>
             </button>
-            <mat-slide-toggle [hideIcon]="true" color="primary" class="mb-1"></mat-slide-toggle>
+            <mat-slide-toggle [hideIcon]="true" color="primary" [(ngModel)]="alarma.activa"
+              class="mb-1"></mat-slide-toggle>
           </div>
         </div>
         <div class="flex">
@@ -31,7 +32,9 @@
         </div>
       </div>
     </mat-card>
-
-
+    <div class="h-14 w-full"></div>
+    <div class="float-button" (click)="mostrarCrear()">
+      <button mat-fab><mat-icon class="material-symbols-rounded">add</mat-icon></button>
+    </div>
   </div>
 </div>

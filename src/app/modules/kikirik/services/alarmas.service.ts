@@ -35,4 +35,8 @@ export class AlarmasService {
     let index = this.alarmas.findIndex(al => al.id === alarma.id);
     this.alarmas[index] = alarma;
   }
+
+  public eliminarAlarma(alarma: Alarma) {
+    this.alarmas = this.alarmas.filter(al => al.id !== alarma.id);
+  }
 }

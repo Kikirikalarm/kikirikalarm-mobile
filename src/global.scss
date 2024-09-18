@@ -76,3 +76,8 @@ ion-tab-bar {
   --fc-text-color: #ffffff; /* Color de texto en tema oscuro */
   --fc-background-color: #333333; /* Fondo en tema oscuro */
 }
+
+.snack-bar-propio {
+  position: relative !important;
+  top: -60px !important;
+}

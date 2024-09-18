@@ -5,10 +5,12 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import esLocale from '@fullcalendar/core/locales/es';
 import interactionPlugin, { DateClickArg } from '@fullcalendar/interaction';
 import { cl } from '@fullcalendar/core/internal-common';
-import { Gesture, GestureController } from '@ionic/angular';
+import { Gesture, GestureController, ModalController } from '@ionic/angular';
 import { MatDialog } from '@angular/material/dialog';
 import { SeleccionHoraDialogComponent } from '../../components/seleccion-hora-dialog/seleccion-hora-dialog.component';
 import { EventImpl } from '@fullcalendar/core/internal';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { CrearAlarmaComponent } from '../crear-alarma/crear-alarma.component';
 
 @Component({
   selector: 'app-agenda',
@@ -172,7 +174,9 @@ export class AgendaComponent implements AfterViewInit, OnInit {
   constructor(
     private cdr: ChangeDetectorRef,
     private gestureCtrl: GestureController,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private snackBar: MatSnackBar,
+    private modalCtrl: ModalController
   ) { }
 
   ngOnInit() {
@@ -291,6 +295,20 @@ export class AgendaComponent implements AfterViewInit, OnInit {
     });
     this.eventsSelectedDate = filteredEvents;
     console.log('Eventos del calendario para la fecha', date.toDateString(), ':', filteredEvents);
+  }
+
+  async mostrarCrear() {
+    const modal = await this.modalCtrl.create({
+      component: CrearAlarmaComponent,
+    });
+    modal.present();
+    const { data, role } = await modal.onWillDismiss();
+    if (role === 'confirm') {
+      //TODO: Implementar la creación de la alarma
+      // this.alarmasService.addAlarm = data;
+      // this.obtenerAlarmas();
+      this.snackBar.open('Se ha creado la alarma correctamente', '', { panelClass: 'snack-bar-propio', duration: 2000 });
+    }
   }
 
 }

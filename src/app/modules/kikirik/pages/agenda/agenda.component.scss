@@ -18,3 +18,10 @@
   top: -4px;
   position: relative;
 }
+
+.float-button {
+  position: absolute;
+  z-index: 1000;
+  bottom: 8px;
+  right: 8px;
+}
