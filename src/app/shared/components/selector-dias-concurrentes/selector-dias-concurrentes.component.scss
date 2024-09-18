@@ -1,0 +1,22 @@
+.day-selector {
+  display: flex;
+  justify-content: space-between;
+}
+
+.button-day {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #1a788459;
+  cursor: pointer;
+}
+
+.button-day-selected {
+  color: white;
+  background-color: #1a7783;
+}
+
+.mensaje-selector {
+  font-size: medium;
+  color: #1a7783;
+}

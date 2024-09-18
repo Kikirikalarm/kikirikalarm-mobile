@@ -7,8 +7,13 @@ import { FullCalendarModule } from '@fullcalendar/angular';
 import { MAT_COLOR_FORMATS, NgxMatColorPickerModule, NGX_MAT_COLOR_FORMATS } from '@angular-material-components/color-picker';
 import { IonicModule } from '@ionic/angular';
 import { HttpClientModule } from '@angular/common/http';
+import { DialogConfirmComponent } from './components/dialog-confirm/dialog-confirm.component';
+import { SelectorDiasConcurrentesComponent } from './components/selector-dias-concurrentes/selector-dias-concurrentes.component';
 @NgModule({
-  declarations: [],
+  declarations: [
+    DialogConfirmComponent,
+    SelectorDiasConcurrentesComponent
+  ],
   imports: [
     CommonModule,
     FormsModule,
@@ -28,7 +33,8 @@ import { HttpClientModule } from '@angular/common/http';
     IonicModule,
     FullCalendarModule,
     NgxMatColorPickerModule,
-    HttpClientModule
+    HttpClientModule,
+    SelectorDiasConcurrentesComponent
   ],
   providers: [
     { provide: MAT_COLOR_FORMATS, useValue: NGX_MAT_COLOR_FORMATS }

@@ -1,0 +1,9 @@
+<div class="flex flex-col gap-1">
+  <span class="mensaje-selector">Seleccionar dias</span>
+  <div class="flex flex-row w-full gap-2 justify-between">
+    <button *ngFor="let day of daysToShow" class="button-day" matRipple (click)="toggleDay(day.value)" type="button"
+      [ngClass]="dayActive(day.value)">
+      {{ day.key | uppercase }}
+    </button>
+  </div>
+</div>

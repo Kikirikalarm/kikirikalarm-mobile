@@ -1,0 +1,11 @@
+<div *ngIf="confModal.options.titulo">
+  <h1 mat-dialog-title>{{confModal.options.titulo}}</h1>
+</div>
+<div mat-dialog-content>
+  <span class="text-sm" [innerHTML]="confModal.mensaje"></span>
+</div>
+<div mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close (click)="onNoClick()">{{confModal.options.tituloBtnCancelar ?? 'NO'}}</button>
+  <button mat-button mat-dialog-close cdkFocusInitial (click)="confirmo()">{{confModal.options.tituloBtnConfirmar ??
+    'SI'}}</button>
+</div>
