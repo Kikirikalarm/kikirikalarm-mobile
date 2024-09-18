@@ -1,6 +1,6 @@
 import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FullCalendarComponent } from '@fullcalendar/angular';
-import { CalendarOptions } from '@fullcalendar/core';
+import { CalendarOptions, EventSourceInput } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import esLocale from '@fullcalendar/core/locales/es';
 import interactionPlugin, { DateClickArg } from '@fullcalendar/interaction';
@@ -11,6 +11,9 @@ import { SeleccionHoraDialogComponent } from '../../components/seleccion-hora-di
 import { EventImpl } from '@fullcalendar/core/internal';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { CrearAlarmaComponent } from '../crear-alarma/crear-alarma.component';
+import { AlarmasService } from '../../services/alarmas.service';
+import { PausaAlarma } from '../../models/pausa-alarma.model';
+import { Alarma } from '../../models/alarma.model';
 
 @Component({
   selector: 'app-agenda',
@@ -25,6 +28,7 @@ export class AgendaComponent implements AfterViewInit, OnInit {
   selectedDateStr: string | null = null;
   selectedDate: Date | null = this.currentDate;
   eventsSelectedDate: EventImpl[] = [];
+  alarmas: Alarma[] = [];
   calendarOptions: CalendarOptions = {
     initialView: 'dayGridMonth',
     headerToolbar: false,
@@ -33,135 +37,11 @@ export class AgendaComponent implements AfterViewInit, OnInit {
     locales: [esLocale],
     locale: esLocale,
     events: [
-      {
-        title: '',
-        date: '2024-09-25',
-        color: 'red',
-        display: 'list-item',
-        extendedProps: {
-          color: 'black',
-          iconName: 'sports_soccer'
-        },
-        editable: false,
-        interactive: false
-      },
-      {
-        title: '',
-        date: '2024-09-25',
-        color: 'purple',
-        display: 'list-item',
-        extendedProps: {
-          color: 'blue',
-          iconName: 'engineering'
-        },
-        editable: false,
-        interactive: false
-      },
-      {
-        title: '',
-        date: '2024-09-25',
-        display: 'list-item',
-        extendedProps: {
-          iconName: 'sports_gymnastics',
-          color: 'green'
-        },
-        editable: false,
-        interactive: false
-      },
-      {
-        title: '',
-        date: '2024-09-13',
-        display: 'list-item',
-        extendedProps: {
-          iconName: 'sports_esports',
-          color: 'green'
-        },
-        editable: false,
-        interactive: false
-      },
-      {
-        title: '',
-        date: '2024-09-13',
-        display: 'list-item',
-        className: 'circulo',
-        extendedProps: {
-          iconName: 'change_history',
-          color: 'black'
-        },
-        editable: false,
-        interactive: false
-      },
-      {
-        title: '',
-        date: '2024-09-13',
-        display: 'list-item',
-        extendedProps: {
-          iconName: 'home',
-          color: 'purple'
-        },
-        editable: false,
-        interactive: false
-      },
-      {
-        title: '',
-        date: '2024-09-16',
-        display: 'list-item',
-        extendedProps: {
-          iconName: 'home',
-          color: 'purple'
-        },
-        editable: false,
-        interactive: false
-      },
-      {
-        title: '',
-        date: '2024-09-16',
-        display: 'list-item',
-        extendedProps: {
-          iconName: 'home',
-          color: 'purple'
-        },
-        editable: false,
-        interactive: false
-      },
-      {
-        title: '',
-        date: '2024-09-16',
-        display: 'list-item',
-        extendedProps: {
-          iconName: 'favorite',
-          color: 'pink'
-        },
-        editable: false,
-        interactive: false
-      },
-      {
-        title: '',
-        date: '2024-09-17',
-        display: 'list-item',
-        extendedProps: {
-          iconName: 'favorite',
-          color: 'green'
-        },
-        editable: false,
-        interactive: false
-      },
-      {
-        title: '',
-        date: '2024-09-15',
-        display: 'list-item',
-        extendedProps: {
-          iconName: 'favorite',
-          color: 'green'
-        },
-        editable: false,
-        interactive: false
-      },
     ],
     eventContent: function (arg) {
       const container = document.createElement('div');
       let contentHtml = '';
-      contentHtml = `<mat-icon class="material-symbols-rounded" style="margin-rigth:0px; font-size: 14px;top: -6px;position: relative; color: ${arg.event.extendedProps['color']};">${arg.event.extendedProps['iconName']}</mat-icon>`;
+      contentHtml = `<mat-icon class="material-symbols-rounded" style="margin-rigth:0px; font-size: 14px;top: -6px;position: relative; color: ${arg.event.extendedProps['alarma']['marcador']['color']};">${arg.event.extendedProps['alarma']['marcador']['icono']}</mat-icon>`;
       container.innerHTML = contentHtml;
       return { domNodes: [container] };
     },
@@ -169,19 +49,25 @@ export class AgendaComponent implements AfterViewInit, OnInit {
     eventClick: this.handleEventClick.bind(this),
     selectOverlap: false,
     fixedWeekCount: false, // Añade esta línea para evitar semanas adicionales
-    plugins: [dayGridPlugin, interactionPlugin]
+    plugins: [dayGridPlugin, interactionPlugin],
+    dayMaxEventRows: 3,
   };
   constructor(
     private cdr: ChangeDetectorRef,
     private gestureCtrl: GestureController,
     public dialog: MatDialog,
     private snackBar: MatSnackBar,
-    private modalCtrl: ModalController
+    private modalCtrl: ModalController,
+    private alarmasService: AlarmasService
   ) { }
 
   ngOnInit() {
     setTimeout(() => {
-      this.findCalendarEventsByDate(this.currentDate);
+      this.alarmas = this.alarmasService.getAlarmas;
+      this.calendarOptions.events = this.generarEventosDeAlarmasParaMes(this.currentDate, this.alarmas);
+      setTimeout(() => {
+        this.findCalendarEventsByDate(this.currentDate);
+      }, 0);
     }, 0);
   }
 
@@ -304,11 +190,91 @@ export class AgendaComponent implements AfterViewInit, OnInit {
     modal.present();
     const { data, role } = await modal.onWillDismiss();
     if (role === 'confirm') {
-      //TODO: Implementar la creación de la alarma
-      // this.alarmasService.addAlarm = data;
-      // this.obtenerAlarmas();
+      this.alarmas = this.alarmasService.getAlarmas;
+      this.calendarOptions.events = this.generarEventosDeAlarmasParaMes(this.currentDate, this.alarmas);
+      setTimeout(() => {
+        this.findCalendarEventsByDate(this.currentDate);
+      }, 0);
       this.snackBar.open('Se ha creado la alarma correctamente', '', { panelClass: 'snack-bar-propio', duration: 2000 });
     }
   }
+
+  // Función para verificar si una fecha está en pausa
+  estaEnPausa(fecha: Date, pausas: PausaAlarma[]) {
+    return pausas.some(pausa => {
+      const fechaInicial = new Date(pausa.fechaInicial);
+      const fechaFinal = pausa.fechaFinal ? new Date(pausa.fechaFinal) : null;
+
+      if (fechaFinal) {
+        return fecha >= fechaInicial && fecha <= fechaFinal;
+      } else {
+        return fecha >= fechaInicial;
+      }
+    });
+  }
+
+  generarEventosDeAlarmasParaMes(currentDate: Date, alarmas: Alarma[]) {
+    const eventos: EventSourceInput = [];
+    const fechaActual = new Date(currentDate);
+
+    // Calcular el rango: el mes de currentDate + primera semana del siguiente mes
+    const inicioMes = new Date(fechaActual.getFullYear(), fechaActual.getMonth(), 1);
+    const finMes = new Date(fechaActual.getFullYear(), fechaActual.getMonth() + 1, 7); // Primeros 7 días del siguiente mes
+
+    // Iterar sobre las alarmas
+    alarmas.forEach(alarma => {
+      if (!alarma.activa) return; // Saltar alarmas inactivas
+
+      const diasActivos = alarma.dias;
+      const horaAlarma = alarma.hora;
+      const fechaCreacion = new Date(alarma.fechaCreacion);
+
+      // Mapeo de días a índices (lunes = 1, ..., domingo = 7)
+      const diasSemana = {
+        lunes: 1,
+        martes: 2,
+        miercoles: 3,
+        jueves: 4,
+        viernes: 5,
+        sabado: 6,
+        domingo: 0
+      };
+
+      // Iterar sobre los días de la semana y verificar si están activos
+      for (const [dia, activo] of Object.entries(diasActivos)) {
+        if (activo) {
+          // Empezar a buscar desde el primer día del mes actual
+          const fechaInicio = new Date(inicioMes);
+
+          // Ajustar la fecha para que coincida con el primer día activo
+          while (fechaInicio.getDay() !== diasSemana[dia as keyof typeof diasSemana]) {
+            fechaInicio.setDate(fechaInicio.getDate() + 1);
+          }
+
+          // Generar eventos hasta la primera semana del mes siguiente
+          for (let fechaEvento = new Date(fechaInicio); fechaEvento <= finMes; fechaEvento.setDate(fechaEvento.getDate() + 7)) {
+
+            // Verificar si la fecha del evento está dentro del rango de creación de la alarma
+            if (fechaEvento >= fechaCreacion && !this.estaEnPausa(fechaEvento, alarma.pausas)) {
+
+              // Crear el evento para FullCalendar
+              eventos.push({
+                title: alarma.nombre,
+                date: fechaEvento.toISOString().split('T')[0], // Fecha en formato "YYYY-MM-DD"
+                display: 'list-item',
+                extendedProps: {
+                  alarma: alarma // Incluir la alarma completa en extendedProps
+                },
+                editable: false,
+                interactive: false
+              });
+            }
+          }
+        }
+      }
+    });
+    return eventos;
+  }
+
 
 }

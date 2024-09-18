@@ -2,7 +2,7 @@ import { Marcador } from "./marcador.model";
 import { PausaAlarma } from "./pausa-alarma.model";
 
 export interface Alarma {
-  id: number;
+  id?: number;
   nombre: string;
   hora: string;
   activa: boolean;
@@ -18,5 +18,6 @@ export interface Alarma {
   }
   marcador: Marcador;
   pausas: PausaAlarma[];
+  fechaCreacion: Date;
 }
 

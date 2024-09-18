@@ -1,0 +1,10 @@
+{
+  "tamConfigButton": {
+    "width": 0,
+    "height": 0
+  },
+  "duracionAlarma": 1,
+  "formatoHora":24,
+  "destellos": false,
+  "vibracion": true
+}

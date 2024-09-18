@@ -7,6 +7,7 @@ import { ScreenOrientation } from '@capacitor/screen-orientation';
 import { Platform } from '@ionic/angular';
 import { AlarmasService } from './modules/kikirik/services/alarmas.service';
 import { MarcadorService } from './modules/kikirik/services/marcador.service';
+import { ConfigService } from './modules/kikirik/services/config.service';
 
 @Component({
   selector: 'app-root',
@@ -21,7 +22,8 @@ export class AppComponent implements OnInit {
     sanitizer: DomSanitizer,
     private platform: Platform,
     private alarmasService: AlarmasService,
-    private marcadorService: MarcadorService
+    private marcadorService: MarcadorService,
+    private configService: ConfigService
   ) {
     this.registryIcons(iconRegistry, sanitizer);
     this.initializeApp();
@@ -81,5 +83,6 @@ export class AppComponent implements OnInit {
   async obtenerData() {
     await this.alarmasService.getAlarmasService();
     await this.marcadorService.getMarcadorService();
+    await this.configService.getConfigService();
   }
 }

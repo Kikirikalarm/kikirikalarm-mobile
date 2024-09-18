@@ -12,7 +12,7 @@
         </div>
         <div class="flex justify-between">
           <div class="flex items-center">
-            <span class="text-3xl mr-1 font-bold">{{alarma.hora}}</span>
+            <span class="text-3xl mr-1 font-bold">{{getHora(alarma)}}</span>
             <mat-icon class="material-symbols-rounded text-3xl"
               style="width: 2rem; height: 2rem;">{{iconoHora(alarma)}}</mat-icon>
           </div>
@@ -34,7 +34,7 @@
     </mat-card>
     <div class="h-14 w-full"></div>
     <div class="float-button" (click)="mostrarCrear()">
-      <button mat-fab><mat-icon class="material-symbols-rounded">add</mat-icon></button>
+      <button mat-fab color="accent"><mat-icon class="material-symbols-rounded">add</mat-icon></button>
     </div>
   </div>
 </div>

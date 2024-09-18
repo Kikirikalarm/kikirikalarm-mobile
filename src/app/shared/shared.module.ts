@@ -9,6 +9,7 @@ import { IonicModule } from '@ionic/angular';
 import { HttpClientModule } from '@angular/common/http';
 import { DialogConfirmComponent } from './components/dialog-confirm/dialog-confirm.component';
 import { SelectorDiasConcurrentesComponent } from './components/selector-dias-concurrentes/selector-dias-concurrentes.component';
+import { NgxMatTimepickerModule } from 'ngx-mat-timepicker';
 @NgModule({
   declarations: [
     DialogConfirmComponent,
@@ -23,7 +24,8 @@ import { SelectorDiasConcurrentesComponent } from './components/selector-dias-co
     IonicModule,
     FullCalendarModule,
     NgxMatColorPickerModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxMatTimepickerModule.setLocale('es-CO')
   ],
   exports: [
     FormsModule,
@@ -34,7 +36,8 @@ import { SelectorDiasConcurrentesComponent } from './components/selector-dias-co
     FullCalendarModule,
     NgxMatColorPickerModule,
     HttpClientModule,
-    SelectorDiasConcurrentesComponent
+    SelectorDiasConcurrentesComponent,
+    NgxMatTimepickerModule
   ],
   providers: [
     { provide: MAT_COLOR_FORMATS, useValue: NGX_MAT_COLOR_FORMATS }

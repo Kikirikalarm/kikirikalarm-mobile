@@ -7,22 +7,29 @@ import { OptionsConfirm } from '../../../../shared/models/dialog-confirm-options
 import { ModalController } from '@ionic/angular';
 import { CrearAlarmaComponent } from '../crear-alarma/crear-alarma.component';
 import { EditarAlarmaComponent } from '../editar-alarma/editar-alarma.component';
+import { ConfigService } from '../../services/config.service';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-alarmas',
   templateUrl: './alarmas.component.html',
   styleUrls: ['./alarmas.component.scss'],
+  providers: [DatePipe]
 })
 export class AlarmasComponent implements OnInit {
   alarmas: Alarma[] = [];
+  formato: 12 | 24 = 12;
   constructor(
     private alarmasService: AlarmasService,
     private dialogConfirmServiceService: DialogConfirmServiceService,
     private snackBar: MatSnackBar,
-    private modalCtrl: ModalController
+    private modalCtrl: ModalController,
+    private configService: ConfigService,
+    private datePipe: DatePipe
   ) { }
 
   ngOnInit() {
+    this.formato = this.configService.configAlarmService!.formatoHora || 12;
     this.obtenerAlarmas();
   }
 
@@ -85,7 +92,6 @@ export class AlarmasComponent implements OnInit {
     modal.present();
     const { data, role } = await modal.onWillDismiss();
     if (role === 'confirm') {
-      this.alarmasService.updateAlarm = data;
       this.obtenerAlarmas();
       this.snackBar.open('Se ha guardado la alarma correctamente', '', { panelClass: 'snack-bar-propio', duration: 2000 });
     }
@@ -103,5 +109,13 @@ export class AlarmasComponent implements OnInit {
       this.obtenerAlarmas();
       this.snackBar.open('Se ha creado la alarma correctamente', '', { panelClass: 'snack-bar-propio', duration: 2000 });
     }
+  }
+
+  getHora(alarma: Alarma) {
+    if (!this.formato) {
+      return alarma.hora;
+    }
+    let formato = this.formato === 12 ? 'hh:mm' : 'HH:mm';
+    return this.datePipe.transform(alarma.horaDate, formato);
   }
 }

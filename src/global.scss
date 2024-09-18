@@ -60,10 +60,14 @@ body {
 
 ion-tab-bar {
   --background: var(--ion-color-primary); /* Fondo transparente */
-  --color: #c4dcdf; /* Color de las pestañas no seleccionadas */
+  --color: #ffffff9e; /* Color de las pestañas no seleccionadas */
   --color-selected: #ffffff; /* Color de las pestañas seleccionadas */
   --border-color: #ffffff; /* Color del indicador de selección */
   --indicator-color: #ffffff; /* Color del indicador debajo de la pestaña */
+}
+
+ion-tab-button.tab-selected{
+  font-size: medium;
 }
 
 :root {

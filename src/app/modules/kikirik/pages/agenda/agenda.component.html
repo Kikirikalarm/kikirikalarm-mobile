@@ -37,11 +37,11 @@
             <div class="flex w-full items-center justify-between p-1">
               <div class="flex">
                 <div class="flex items-center justify-center">
-                  <mat-icon class="text-sm">medication_liquid</mat-icon>
+                  <mat-icon class="text-sm" class="material-symbols-rounded">{{item.extendedProps['alarma']['marcador']['icono']}}</mat-icon>
                 </div>
-                <div class="flex flex-col">
-                  <span class="text-sm">Nombre Alarma</span>
-                  <span class="text-sm">11:00</span>
+                <div class="flex flex-col p-1">
+                  <span class="text-sm">{{item.extendedProps['alarma']['nombre']}}</span>
+                  <span class="text-sm">{{item.extendedProps['alarma']['horaDate'] | date: 'HH:mm'}}</span>
                 </div>
               </div>
               <div class="flex">
@@ -62,7 +62,7 @@
 
     </div>
     <div class="float-button" (click)="mostrarCrear()">
-      <button mat-fab><mat-icon class="material-symbols-rounded">add</mat-icon></button>
+      <button mat-fab color="accent"><mat-icon class="material-symbols-rounded">add</mat-icon></button>
     </div>
   </div>
 </div>

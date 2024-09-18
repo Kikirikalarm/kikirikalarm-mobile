@@ -44,7 +44,7 @@ export class SelectorDiasConcurrentesComponent {
 
   // Escribir el valor desde el formulario
   writeValue(value: any): void {
-    if (value) {
+    if (value && typeof value === 'object') {
       this.days = { ...this.days, ...value };
     }
   }
