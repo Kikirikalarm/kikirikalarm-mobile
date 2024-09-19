@@ -26,8 +26,7 @@
       </div>
     </div>
     <div id="container-tareas" class="container-tareas flex flex-col px-3 gap-3">
-      <div *ngFor="let item of eventsSelectedDate; let i=index"
-        class="flex w-full items-start justify-center gap-4 ">
+      <div *ngFor="let item of eventsSelectedDate; let i=index" class="flex w-full items-start justify-center gap-4 ">
         <div class="flex flex-col items-center justify-center">
           <span class="text-sm font-bold">{{item.start | date:'ccc'}}</span>
           <span class="text-sm font-bold">{{item.start | date:'dd'}}</span>
@@ -37,7 +36,8 @@
             <div class="flex w-full items-center justify-between p-1">
               <div class="flex">
                 <div class="flex items-center justify-center">
-                  <mat-icon class="text-sm" class="material-symbols-rounded">{{item.extendedProps['alarma']['marcador']['icono']}}</mat-icon>
+                  <mat-icon class="text-sm"
+                    class="material-symbols-rounded">{{item.extendedProps['alarma']['marcador']['icono']}}</mat-icon>
                 </div>
                 <div class="flex flex-col p-1">
                   <span class="text-sm">{{item.extendedProps['alarma']['nombre']}}</span>
@@ -53,7 +53,7 @@
           </mat-card>
         </div>
       </div>
-
+      <div class="min-h-14 w-full" *ngIf="eventsSelectedDate.length"></div>
       <div *ngIf="eventsSelectedDate.length === 0">
         <div class="flex items-center justify-center">
           <span class="text-sm">No hay tareas para este día</span>

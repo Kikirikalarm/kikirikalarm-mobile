@@ -24,7 +24,6 @@ export class AgendaComponent implements AfterViewInit, OnInit {
   currentDate: Date = new Date();
   @ViewChild('calendar') calendarComponent!: FullCalendarComponent;
   @ViewChild('calendarContainer', { static: false }) calendarContainer!: ElementRef;
-  arrayTareas = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   selectedDateStr: string | null = null;
   selectedDate: Date | null = this.currentDate;
   eventsSelectedDate: EventImpl[] = [];
@@ -163,10 +162,15 @@ export class AgendaComponent implements AfterViewInit, OnInit {
   }
 
   updateCalendar() {
+
     if (this.calendarComponent) {
       const calendarApi = this.calendarComponent.getApi();
       calendarApi.gotoDate(this.currentDate);
+      this.calendarOptions.events = this.generarEventosDeAlarmasParaMes(this.currentDate, this.alarmas);
       this.cdr.detectChanges()
+      setTimeout(() => {
+        this.findCalendarEventsByDate(this.currentDate);
+      }, 0);
     }
   }
 
@@ -218,8 +222,8 @@ export class AgendaComponent implements AfterViewInit, OnInit {
     const fechaActual = new Date(currentDate);
 
     // Calcular el rango: el mes de currentDate + primera semana del siguiente mes
-    const inicioMes = new Date(fechaActual.getFullYear(), fechaActual.getMonth(), 1);
-    const finMes = new Date(fechaActual.getFullYear(), fechaActual.getMonth() + 1, 7); // Primeros 7 días del siguiente mes
+    const inicioMes = new Date(fechaActual.getFullYear(), fechaActual.getMonth(), -0);
+    const finMes = new Date(fechaActual.getFullYear(), fechaActual.getMonth() + 1, 0); // Primeros 7 días del siguiente mes
 
     // Iterar sobre las alarmas
     alarmas.forEach(alarma => {
