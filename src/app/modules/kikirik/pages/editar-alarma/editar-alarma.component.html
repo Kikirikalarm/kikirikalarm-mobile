@@ -14,10 +14,40 @@
   </ion-toolbar>
 </ion-header>
 <ion-content class="ion-padding">
-  <form [formGroup]="form" (ngSubmit)="confirm()">
-    <input type="time" #inputTime class="hidden">
-    <button mat-button (click)="inputTime.click()" type="button">abrir hora</button>
+  <form [formGroup]="alarmaForm" class="flex flex-col gap-3">
+    <input matInput [format]="formatoHora" formControlName="hora" [ngxMatTimepicker]="pickerE" placeholder="12:00"
+      readonly class="hidden" />
 
-    <app-selector-dias-concurrentes formControlName="days"></app-selector-dias-concurrentes>
+    <ng-container *ngIf="formatoHora === 24; else formato12H">
+      <div class="flex w-full justify-center gap-2">
+        <button class="button-hour text-5xl" (click)="pickerE.open()">{{alarmaForm.get('horaDate')?.value | date :
+          'HH'}}</button>
+        <div class="flex flex-col gap-5 justify-center">
+          <div class="point-hour"></div>
+          <div class="point-hour"> </div>
+        </div>
+        <button class="button-hour text-5xl" (click)="pickerE.open()">{{alarmaForm.get('horaDate')?.value | date :
+          'mm'}}</button>
+      </div>
+    </ng-container>
+    <ng-template #formato12H>
+      <div class="flex w-full justify-center gap-2">
+        <button class="button-hour text-5xl" (click)="pickerE.open()">{{alarmaForm.get('horaDate')?.value | date :
+          'hh'}}</button>
+        <div class="flex flex-col gap-5 justify-center">
+          <div class="point-hour"></div>
+          <div class="point-hour"> </div>
+        </div>
+        <button class="button-hour text-5xl" (click)="pickerE.open()">{{alarmaForm.get('horaDate')?.value | date :
+          'mm'}}</button>
+        <div>
+          <mat-icon class="absolute">{{iconoHora()}}</mat-icon>
+        </div>
+      </div>
+    </ng-template>
+
+    <app-selector-dias-concurrentes formControlName="dias"></app-selector-dias-concurrentes>
+
+    <ngx-mat-timepicker color="primary" #pickerE (timeSet)="cambioFecha($event)"></ngx-mat-timepicker>
   </form>
 </ion-content>
