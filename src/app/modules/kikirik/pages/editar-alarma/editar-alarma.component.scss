@@ -33,10 +33,15 @@
 }
 
 .float-button {
-  position: absolute;
+  position: fixed;
   z-index: 1000;
-  bottom: 8px;
-  right: 8px;
+  bottom: 40px;
+  right: 20px;
+}
+
+.scroll {
+  height: calc(100vh - 480px);
+  overflow: auto;
 }
 
 @media (prefers-color-scheme: dark) {

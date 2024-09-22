@@ -1,4 +1,4 @@
 export interface PausaAlarma {
   fechaInicial: Date;
-  fechaFinal?: Date;
+  fechaFinal: Date;
 }

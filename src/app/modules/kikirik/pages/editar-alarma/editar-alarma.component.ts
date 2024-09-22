@@ -4,6 +4,10 @@ import { ModalController } from '@ionic/angular';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ConfigService } from '../../services/config.service';
 import { AlarmasService } from '../../services/alarmas.service';
+import { OptionsConfirm } from 'src/app/shared/models/dialog-confirm-options.model';
+import { DialogConfirmServiceService } from 'src/app/shared/services/dialog-confirm-service.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { PausaAlarma } from '../../models/pausa-alarma.model';
 
 @Component({
   selector: 'app-editar-alarma',
@@ -21,7 +25,9 @@ export class EditarAlarmaComponent implements OnInit {
     private modalCtrl: ModalController,
     private configService: ConfigService,
     private fb: FormBuilder,
-    private alarmasService: AlarmasService
+    private alarmasService: AlarmasService,
+    private dialogConfirmServiceService: DialogConfirmServiceService,
+    private snackBar: MatSnackBar,
   ) { }
 
   ngOnInit() {
@@ -115,6 +121,23 @@ export class EditarAlarmaComponent implements OnInit {
     this.alarmaForm.get('hora')?.setValue(hora);
   }
 
+  async showDeleteModal(alarma: Alarma, pausa:PausaAlarma) {
+    let options: OptionsConfirm = {
+      tituloBtnConfirmar: 'Si',
+      tituloBtnCancelar: 'No',
+      width: '280px',
+    }
+    let confirmacion = await this.dialogConfirmServiceService.succesConfirmMessaje('¿Esta seguro de eliminar la pausa?', options);
+    debugger;
+    if (confirmacion) {
+      let index = alarma.pausas.findIndex(p => p.fechaInicial == pausa.fechaInicial && p.fechaFinal == pausa.fechaFinal);
+      if (index >= 0) {
+        alarma.pausas.splice(index, 1);
+      }
+      
+      this.snackBar.open('Se ha eliminado la pausa', '', { panelClass: 'snack-bar-propio', duration: 2000 });
+    }
+  }
 
   public iconoHora(): string {
     let hora = new Date(this.alarmaForm.get('horaDate')!.value);

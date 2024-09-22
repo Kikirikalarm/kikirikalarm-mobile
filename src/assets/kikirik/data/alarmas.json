@@ -25,7 +25,8 @@
         "fechaFinal": "2024-09-10T00:00:00"
       },
       {
-        "fechaInicial": "2024-11-15T00:00:00"
+        "fechaInicial": "2024-11-15T00:00:00",
+        "fechaFinal": "2024-11-15T00:00:00"
       }
     ],
     "fechaCreacion": "2024-09-17T07:30:00"
@@ -80,7 +81,8 @@
     },
     "pausas": [
       {
-        "fechaInicial": "2024-12-01T00:00:00"
+        "fechaInicial": "2024-12-01T00:00:00",
+        "fechaFinal": "2024-12-01T00:00:00"
       }
     ],
     "fechaCreacion": "2024-08-10T07:30:00"
@@ -135,7 +137,8 @@
     },
     "pausas": [
       {
-        "fechaInicial": "2024-10-01T00:00:00"
+        "fechaInicial": "2024-10-01T00:00:00",
+        "fechaFinal": "2024-10-01T00:00:00"
       }
     ],
     "fechaCreacion": "2024-10-17T07:30:00"
@@ -269,7 +272,8 @@
     },
     "pausas": [
       {
-        "fechaInicial": "2024-11-20T00:00:00"
+        "fechaInicial": "2024-11-20T00:00:00",
+        "fechaFinal": "2024-11-20T00:00:00"
       }
     ],
     "fechaCreacion": "2024-09-18T07:30:00"
@@ -296,7 +300,8 @@
     },
     "pausas": [
       {
-        "fechaInicial": "2024-09-01T00:00:00"
+        "fechaInicial": "2024-09-01T00:00:00",
+        "fechaFinal": "2024-09-01T00:00:00"
       }
     ],
     "fechaCreacion": "2023-09-18T07:30:00"

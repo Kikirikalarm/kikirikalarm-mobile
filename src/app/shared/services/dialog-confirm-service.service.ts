@@ -22,7 +22,8 @@ export class DialogConfirmServiceService {
     return new Promise((resolve, reject) => {
       this.confirmDialogRef = this.matDialog.open(DialogConfirmComponent, {
         data: { mensaje, options },
-        panelClass: ''
+        panelClass: '',
+        autoFocus: false,
       });
       this.confirmDialogRef.afterClosed().subscribe(result => {
         if (result) {

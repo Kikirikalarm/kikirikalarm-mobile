@@ -2,44 +2,46 @@
   <div class="flex">
     <span class="text-4xl font-bold">Ajustes</span>
   </div>
-  <mat-list>
-    <mat-list-item>
+  <mat-action-list>
+    <button mat-list-item>
       <mat-icon matListItemIcon class="material-symbols-rounded">frame_inspect</mat-icon>
       <div matListItemTitle>Configurar Botones</div>
       <div matListItemLine>Cambiar tamaño</div>
-    </mat-list-item>
-    <mat-list-item>
+    </button>
+    <button mat-list-item>
       <mat-icon matListItemIcon class="material-symbols-rounded">notifications_active</mat-icon>
       <div matListItemTitle>Notificaciones</div>
       <div matListItemLine>Duración de las notificaciones</div>
-    </mat-list-item>
-    <mat-list-item>
+    </button>
+    <button mat-list-item>
       <mat-icon matListItemIcon></mat-icon>
       <div matListItemTitle>Formato Hora</div>
       <div matListItemLine>24H - AM/PM</div>
-    </mat-list-item>
+    </button>
     <mat-list-item>
       <mat-icon matListItemIcon></mat-icon>
       <div matListItemTitle>Destellos</div>
       <div matListItemLine>Activar destellos de pantalla</div>
-      <mat-slide-toggle matListItemMeta [hideIcon]="true" color="primary" class="mb-1"></mat-slide-toggle>
+      <button matListItemMeta>
+        <mat-slide-toggle [hideIcon]="true" color="primary" class="mb-1"></mat-slide-toggle>
+      </button>  
     </mat-list-item>
-    <mat-list-item>
+    <button mat-list-item>
       <mat-icon matListItemIcon></mat-icon>
       <div matListItemTitle>Vibración</div>
       <div matListItemLine>Activar vibración de alarmas</div>
       <mat-slide-toggle matListItemMeta [hideIcon]="true" color="primary" class="mb-1"></mat-slide-toggle>
-    </mat-list-item>
-    <mat-list-item>
+    </button>
+    <button mat-list-item>
       <mat-icon matListItemIcon></mat-icon>
       <div matListItemTitle>Vista Previa Alarma</div>
       <div matListItemLine></div>
-    </mat-list-item>
-    <mat-list-item (click)="logout()">
+    </button>
+    <button mat-list-item (click)="showLogoutModal()">
       <mat-icon matListItemIcon class="material-symbols-rounded">logout</mat-icon>
       <div matListItemTitle>Cerrar Sesión</div>
       <div matListItemLine></div>
-    </mat-list-item>
-  </mat-list>
+    </button>
+  </mat-action-list>
 
 </div>
