@@ -1,0 +1,7 @@
+<div>
+  <mat-selection-list #formats [multiple]="false" [formControl]="seleccionFormato" (selectionChange)="optionSelected()" >
+    <mat-list-option *ngFor="let formato of formatosHora" [value]="formato">
+      {{formato.nombre}}
+    </mat-list-option>
+  </mat-selection-list>
+</div>

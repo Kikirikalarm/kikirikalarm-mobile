@@ -8,6 +8,8 @@ import { OptionsConfirm } from 'src/app/shared/models/dialog-confirm-options.mod
 import { DialogConfirmServiceService } from 'src/app/shared/services/dialog-confirm-service.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { PausaAlarma } from '../../models/pausa-alarma.model';
+import { MatDialog } from '@angular/material/dialog';
+import { SeleccionarTipoMarcadorComponent } from '../../components/seleccionar-tipo-marcador/seleccionar-tipo-marcador.component';
 
 @Component({
   selector: 'app-editar-alarma',
@@ -20,6 +22,8 @@ export class EditarAlarmaComponent implements OnInit {
   @Input() alarma?: Alarma;
   alarmaForm: FormGroup = this.fb.group({});
   formatoHora: 12 | 24 = this.configService.configAlarmService!.formatoHora || 12;
+  startDate:Date|null = null; 
+  endDate:Date|null = null;
 
   constructor(
     private modalCtrl: ModalController,
@@ -28,6 +32,7 @@ export class EditarAlarmaComponent implements OnInit {
     private alarmasService: AlarmasService,
     private dialogConfirmServiceService: DialogConfirmServiceService,
     private snackBar: MatSnackBar,
+    private dialog: MatDialog
   ) { }
 
   ngOnInit() {
@@ -53,11 +58,7 @@ export class EditarAlarmaComponent implements OnInit {
         sabado: false,
         domingo: false,
       }, Validators.required],
-      marcador: this.fb.group({
-        nombre: [''],
-        icono: [''],
-        color: [''],
-      }),
+      marcador: null,
       pausas: this.fb.array([])
     });
   }
@@ -82,6 +83,7 @@ export class EditarAlarmaComponent implements OnInit {
 
   confirm() {
     let alarma: Alarma = this.alarmaForm.value;
+    alarma.pausas = (this.alarma?.pausas)?this.alarma?.pausas:[];
     this.alarmasService.updateAlarm = alarma;
     return this.modalCtrl.dismiss(this.alarma, 'confirm');
   }
@@ -128,19 +130,43 @@ export class EditarAlarmaComponent implements OnInit {
       width: '280px',
     }
     let confirmacion = await this.dialogConfirmServiceService.succesConfirmMessaje('¿Esta seguro de eliminar la pausa?', options);
-    debugger;
     if (confirmacion) {
       let index = alarma.pausas.findIndex(p => p.fechaInicial == pausa.fechaInicial && p.fechaFinal == pausa.fechaFinal);
       if (index >= 0) {
         alarma.pausas.splice(index, 1);
       }
       
-      this.snackBar.open('Se ha eliminado la pausa', '', { panelClass: 'snack-bar-propio', duration: 2000 });
+      this.snackBar.open('Se ha eliminado la pausa de alarma', '', { panelClass: 'snack-bar-propio', duration: 2000 });
     }
   }
 
   public iconoHora(): string {
     let hora = new Date(this.alarmaForm.get('horaDate')!.value);
     return hora.getHours() < 12 ? 'sunny' : 'bedtime'
+  }
+
+  showMarkersModal() {
+    const dialogRef = this.dialog.open(SeleccionarTipoMarcadorComponent, {
+      //data: 10,
+      autoFocus: false,
+      width: "280px"
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        console.log("formato slee", result)
+        this.alarmaForm.get("marcador")?.setValue(result);
+      }
+    })
+  }
+
+  addPause(){
+    if (this.startDate != null && this.endDate != null) {
+      let pausa: PausaAlarma = { fechaInicial: this.startDate, fechaFinal: this.endDate }
+      this.alarma?.pausas.push(pausa);
+      this.startDate = null;
+      this.endDate = null;
+      this.snackBar.open('Se ha creado la pausa de alarma', '', { panelClass: 'snack-bar-propio', duration: 2000 });
+    }
+    console.log("rango", this.startDate, this.endDate);
   }
 }

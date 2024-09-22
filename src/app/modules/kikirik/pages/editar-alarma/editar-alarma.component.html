@@ -50,19 +50,17 @@
 
     <mat-form-field appearance="outline" hintLabel="Ingrese un nombre para la alarma">
       <mat-label>Nombre Alarma</mat-label>
-      <input matInput placeholder="">
+      <input matInput placeholder="" formControlName="nombre">
       <button mat-icon-button matSuffix type="button">
         <mat-icon class="material-symbols-rounded">mic</mat-icon>
       </button>
       <mat-hint align="end">0/45</mat-hint>
     </mat-form-field>
 
-    <mat-form-field appearance="outline">
+    <mat-form-field appearance="outline" (click)="showMarkersModal()" (keydown.enter)="showMarkersModal()">
       <mat-label>Tipo Marcador</mat-label>
-      <mat-select>
-        <mat-option value="one">First option</mat-option>
-        <mat-option value="two">Second option</mat-option>
-      </mat-select>
+      <input matInput placeholder="" [value]="alarmaForm.get('marcador')?.value?.nombre">
+      <mat-icon matSuffix class="material-symbols-rounded">arrow_drop_down</mat-icon>
       <mat-hint>Seleccione un tipo de marcador</mat-hint>
     </mat-form-field>
 
@@ -83,7 +81,15 @@
         </mat-list-item>
         <mat-list-item></mat-list-item>
         <div class="float-button">
-          <button mat-raised-button color="accent">
+          <div style="display: none;">
+            <mat-date-range-input [rangePicker]="picker">
+              <input matStartDate [(ngModel)]="startDate" [ngModelOptions]="{standalone: true}" placeholder="Start date">
+              <input matEndDate [(ngModel)]="endDate" [ngModelOptions]="{standalone: true}" placeholder="End date">
+            </mat-date-range-input>
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-date-range-picker touchUi #picker (closed)="addPause()"></mat-date-range-picker>
+          </div>
+          <button mat-raised-button color="accent" (click)="picker.open()">
             <mat-icon class="material-symbols-rounded">add</mat-icon>
             <span class="text-sm">Pausa</span>
           </button>

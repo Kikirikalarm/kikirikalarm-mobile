@@ -13,6 +13,10 @@ import { SeleccionHoraDialogComponent } from './components/seleccion-hora-dialog
 import { EditarAlarmaComponent } from './pages/editar-alarma/editar-alarma.component';
 import { CrearAlarmaComponent } from './pages/crear-alarma/crear-alarma.component';
 import { VistaPreviaAlarmaComponent } from './pages/vista-previa-alarma/vista-previa-alarma.component';
+import { SeleccionarDuracionNotificacionComponent } from './components/seleccionar-duracion-notificacion/seleccionar-duracion-notificacion.component';
+import { SeleccionarFormatoHoraComponent } from './components/seleccionar-formato-hora/seleccionar-formato-hora.component';
+import { SeleccionarTipoMarcadorComponent } from './components/seleccionar-tipo-marcador/seleccionar-tipo-marcador.component';
+import { SeleccionarTamanioBotonComponent } from './components/seleccionar-tamanio-boton/seleccionar-tamanio-boton.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +27,11 @@ import { VistaPreviaAlarmaComponent } from './pages/vista-previa-alarma/vista-pr
     SeleccionHoraDialogComponent,
     EditarAlarmaComponent,
     CrearAlarmaComponent,
-    VistaPreviaAlarmaComponent
+    VistaPreviaAlarmaComponent,
+    SeleccionarDuracionNotificacionComponent,
+    SeleccionarFormatoHoraComponent,
+    SeleccionarTamanioBotonComponent,
+    SeleccionarTipoMarcadorComponent    
   ],
   imports: [
     IonicModule,

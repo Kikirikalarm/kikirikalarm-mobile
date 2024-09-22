@@ -1,0 +1,13 @@
+<span mat-dialog-title class="title-modal">Silenciar alarma después de</span>
+<div mat-dialog-content>
+  <mat-selection-list #formats [multiple]="false" [formControl]="seleccionDuracion" (selectionChange)="optionSelected()" >
+    <mat-list-option *ngFor="let opcionDuracion of listaDuracion" [value]="opcionDuracion">
+      {{opcionDuracion}} minuto{{opcionDuracion>1?"s":""}}
+    </mat-list-option>
+  </mat-selection-list>
+</div>
+<div mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close class="text-sm" color="primary">Cancelar</button>
+</div>
+
+
