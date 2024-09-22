@@ -1,0 +1,25 @@
+.title-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.item-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.item-container button mat-icon {
+    color: red;
+}
+
+.float-button {
+    position: absolute;
+    z-index: 1000;
+    bottom: 8px;
+    right: 8px;
+}

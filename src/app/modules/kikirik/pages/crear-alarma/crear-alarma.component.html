@@ -14,5 +14,63 @@
   </ion-toolbar>
 </ion-header>
 <ion-content class="ion-padding">
+  <form class="flex flex-col gap-3">
+    <input matInput formControlName="hora" placeholder="12:00" readonly class="hidden" />
 
+    <app-selector-dias-concurrentes formControlName="dias"></app-selector-dias-concurrentes>
+
+    <mat-form-field appearance="outline" hintLabel="Ingrese un nombre para la alarma">
+      <mat-label>Nombre Alarma</mat-label>
+      <input matInput placeholder="">
+      <button mat-icon-button matSuffix type="button">
+        <mat-icon class="material-symbols-rounded">mic</mat-icon>
+      </button>
+      <mat-hint align="end">0/45</mat-hint>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Tipo Marcador</mat-label>
+      <mat-select>
+        <mat-option value="one">First option</mat-option>
+        <mat-option value="two">Second option</mat-option>
+      </mat-select>
+      <mat-hint>Seleccione un tipo de marcador</mat-hint>
+    </mat-form-field>
+
+    <mat-list>
+      <div class="title-container">
+        <mat-icon class="material-symbols-rounded">alarm</mat-icon>
+        <span>Pausas Alarma</span>
+      </div>
+      <mat-card appearance="outlined">
+        <mat-list-item>
+          <div class="item-container">
+            <span>01/02/2025 - 05/02/2025</span>
+            <button mat-icon-button matSuffix type="button">
+              <mat-icon class="material-symbols-rounded">delete</mat-icon>
+            </button>
+          </div>
+        </mat-list-item>
+        <mat-list-item>
+          <div class="item-container">
+            <span>01/02/2025 - 05/02/2025</span>
+            <button mat-icon-button matSuffix type="button">
+              <mat-icon class="material-symbols-rounded">delete</mat-icon>
+            </button>
+          </div>
+        </mat-list-item>
+        <mat-list-item>
+          <div class="item-container">
+            <span>01/02/2025 - 05/02/2025</span>
+            <button mat-icon-button matSuffix type="button">
+              <mat-icon class="material-symbols-rounded" >delete</mat-icon>
+            </button>
+          </div>
+        </mat-list-item>
+      </mat-card>
+    </mat-list>
+    <div class="float-button">
+      <button mat-raised-button color="accent">+ Pausa</button>
+    </div>
+  </form>
 </ion-content>
