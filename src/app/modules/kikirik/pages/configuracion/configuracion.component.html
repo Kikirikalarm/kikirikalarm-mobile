@@ -24,7 +24,7 @@
       <div matListItemLine>Activar destellos de pantalla</div>
       <button matListItemMeta>
         <mat-slide-toggle [(ngModel)]="configuracion.destellos" [hideIcon]="true" color="primary" class="mb-1"></mat-slide-toggle>
-      </button>  
+      </button>
     </mat-list-item>
     <button mat-list-item>
       <mat-icon matListItemIcon></mat-icon>
@@ -34,7 +34,7 @@
         <mat-slide-toggle [(ngModel)]="configuracion.vibracion" [hideIcon]="true" color="primary" class="mb-1"></mat-slide-toggle>
       </button>
     </button>
-    <button mat-list-item>
+    <button mat-list-item (click)="showPreviewAlarm()">
       <mat-icon matListItemIcon></mat-icon>
       <div matListItemTitle>Vista Previa Alarma</div>
       <div matListItemLine></div>

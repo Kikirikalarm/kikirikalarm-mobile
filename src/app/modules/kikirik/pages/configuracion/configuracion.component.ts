@@ -9,6 +9,8 @@ import { SeleccionarDuracionNotificacionComponent } from '../../components/selec
 import { SeleccionarTamanioBotonComponent } from '../../components/seleccionar-tamanio-boton/seleccionar-tamanio-boton.component';
 import { ConfigService } from '../../services/config.service';
 import { ConfigAlarma } from '../../models/config-alarma.model';
+import { ModalController } from '@ionic/angular';
+import { VistaPreviaAlarmaComponent } from '../vista-previa-alarma/vista-previa-alarma.component';
 
 @Component({
   selector: 'app-configuracion',
@@ -17,14 +19,15 @@ import { ConfigAlarma } from '../../models/config-alarma.model';
 })
 export class ConfiguracionComponent implements OnInit {
 
-  configuracion:ConfigAlarma|null = null;
+  configuracion: ConfigAlarma | null = null;
 
   constructor(
     private LoginService: LoginService,
     private dialogConfirmServiceService: DialogConfirmServiceService,
     private router: Router,
     private dialog: MatDialog,
-    private service: ConfigService
+    private service: ConfigService,
+    private modalCtrl: ModalController,
   ) { }
 
   ngOnInit(): void {
@@ -93,5 +96,12 @@ export class ConfiguracionComponent implements OnInit {
   private logout() {
     this.LoginService.logout();
     this.router.navigate(['/login']);
+  }
+
+  async showPreviewAlarm() {
+    const modal = await this.modalCtrl.create({
+      component: VistaPreviaAlarmaComponent,
+    });
+    modal.present();
   }
 }

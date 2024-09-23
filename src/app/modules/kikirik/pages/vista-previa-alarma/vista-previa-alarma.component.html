@@ -1,3 +1,41 @@
-<p>
-  vista-previa-alarma works!
-</p>
+<div class="w-full flex flex-col gap-16 p-16">
+  <div class="text-center">
+    <span class="text-4xl mr-2">Trabajar</span>
+    <mat-icon class="text-2xl material-symbols-rounded">work</mat-icon>
+  </div>
+
+  <ng-container *ngIf="formatoHora === 24; else formato12H">
+    <div class="flex w-full justify-center gap-2">
+      <span class="text-6xl">{{currentDate | date :'HH'}}</span>
+      <div class="flex flex-col gap-5 justify-center">
+        <div class="point-hour"></div>
+        <div class="point-hour"> </div>
+      </div>
+      <span class="text-6xl">{{currentDate | date :'mm'}}</span>
+    </div>
+  </ng-container>
+  <ng-template #formato12H>
+    <div class="flex w-full justify-center gap-2">
+      <span class="text-6xl">{{currentDate | date :'hh'}}</span>
+      <div class="flex flex-col gap-5 justify-center">
+        <div class="point-hour"></div>
+        <div class="point-hour"> </div>
+      </div>
+      <span class="text-6xl">{{currentDate | date :
+        'mm'}}</span>
+      <div>
+        <mat-icon class="absolute">{{iconoHora}}</mat-icon>
+      </div>
+    </div>
+  </ng-template>
+  <div class="flex flex-col gap-5">
+    <div class="flex h-full w-full items-center justify-center">
+      <button class="boton-alarma" matRipple [ngStyle]="{'font-size':tamanioBoton+'px'}" (click)="closeModal()">Detener</button>
+    </div>
+
+    <div class="flex h-full w-full items-center justify-center">
+      <button class="boton-alarma-accent" matRipple [ngStyle]="{'font-size':tamanioBoton+'px'}" (click)="closeModal()">Posponer</button>
+    </div>
+  </div>
+
+</div>

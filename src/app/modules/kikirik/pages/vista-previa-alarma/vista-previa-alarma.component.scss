@@ -1,0 +1,28 @@
+.point-hour {
+  width: 10px;
+  height: 10px;
+  background-color: black;
+  border-radius: 50%;
+}
+
+@media (prefers-color-scheme: dark) {
+  .point-hour {
+    background-color: white;
+  }
+}
+
+.boton-alarma {
+  padding: 35px;
+  border-radius: 25px;
+  background-color: #1a7783;
+  color: white;
+  font-weight: bold;
+}
+
+.boton-alarma-accent {
+  padding: 35px;
+  border-radius: 25px;
+  background-color: #d94409;
+  color: white;
+  font-weight: bold;
+}
