@@ -14,6 +14,8 @@ import { CrearAlarmaComponent } from '../crear-alarma/crear-alarma.component';
 import { AlarmasService } from '../../services/alarmas.service';
 import { PausaAlarma } from '../../models/pausa-alarma.model';
 import { Alarma } from '../../models/alarma.model';
+import { OptionsConfirm } from 'src/app/shared/models/dialog-confirm-options.model';
+import { DialogConfirmServiceService } from 'src/app/shared/services/dialog-confirm-service.service';
 
 @Component({
   selector: 'app-agenda',
@@ -57,7 +59,8 @@ export class AgendaComponent implements AfterViewInit, OnInit {
     public dialog: MatDialog,
     private snackBar: MatSnackBar,
     private modalCtrl: ModalController,
-    private alarmasService: AlarmasService
+    private alarmasService: AlarmasService,
+    private dialogConfirmServiceService: DialogConfirmServiceService,
   ) { }
 
   ngOnInit() {
@@ -280,5 +283,22 @@ export class AgendaComponent implements AfterViewInit, OnInit {
     return eventos;
   }
 
-
+  async eliminarAlarma(alarma: Alarma) {
+    let options: OptionsConfirm = {
+      tituloBtnConfirmar: 'SI',
+      tituloBtnCancelar: 'NO',
+      width: '280px',
+    }
+    let confirmacion = await this.dialogConfirmServiceService.succesConfirmMessaje('¿Esta seguro de eliminar la alarma?', options);
+    console.log(confirmacion);
+    if (confirmacion) {
+      this.alarmasService.eliminarAlarma(alarma);
+      this.alarmas = this.alarmasService.getAlarmas;
+      this.calendarOptions.events = this.generarEventosDeAlarmasParaMes(this.currentDate, this.alarmas);
+      setTimeout(() => {
+        this.findCalendarEventsByDate(this.currentDate);
+      }, 0);
+      this.snackBar.open('Se ha eliminado la alarma', '', { panelClass: 'snack-bar-propio', duration: 2000 });
+    }
+  }
 }

@@ -9,17 +9,17 @@ export class LoginService {
   constructor() { }
 
   login() {
-    localStorage.setItem('autenticado', 'true');
+    sessionStorage.setItem('autenticado', 'true');
     this.loggedIn = true;
   }
 
   logout() {
-    localStorage.removeItem('autenticado');
+    sessionStorage.removeItem('autenticado');
     this.loggedIn = false;
   }
 
   isLoggedIn() {
-    this.loggedIn = localStorage.getItem('autenticado') === 'true';
+    this.loggedIn = sessionStorage.getItem('autenticado') === 'true';
     return this.loggedIn;
   }
 }
