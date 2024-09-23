@@ -1,76 +1,102 @@
 <ion-header style="box-shadow: none !important;">
   <ion-toolbar color="primary">
     <ion-buttons slot="start">
-      <button mat-icon-button (click)="cancel()">
+      <button mat-icon-button (click)="cancel()" type="button">
         <mat-icon class="material-symbols-rounded">arrow_back</mat-icon>
       </button>
     </ion-buttons>
     <ion-title>Crear Alarma</ion-title>
     <ion-buttons slot="end">
-      <button mat-icon-button (click)="confirm()">
+      <button mat-icon-button (click)="confirm()" type="button">
         <mat-icon class="material-symbols-rounded" style="color: #ffffffbd;">save</mat-icon>
       </button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 <ion-content class="ion-padding">
-  <form class="flex flex-col gap-3">
-    <input matInput formControlName="hora" placeholder="12:00" readonly class="hidden" />
+  <form [formGroup]="alarmaForm" class="flex flex-col gap-3">
+    <input matInput [format]="formatoHora" formControlName="hora" [ngxMatTimepicker]="pickerE" placeholder="12:00"
+      readonly class="hidden" />
+
+    <ng-container *ngIf="formatoHora === 24; else formato12H">
+      <div class="flex w-full justify-center gap-2">
+        <button class="button-hour text-5xl" (click)="pickerE.open()">{{alarmaForm.get('horaDate')?.value | date :
+          'HH'}}</button>
+        <div class="flex flex-col gap-5 justify-center">
+          <div class="point-hour"></div>
+          <div class="point-hour"> </div>
+        </div>
+        <button class="button-hour text-5xl" (click)="pickerE.open()">{{alarmaForm.get('horaDate')?.value | date :
+          'mm'}}</button>
+      </div>
+    </ng-container>
+    <ng-template #formato12H>
+      <div class="flex w-full justify-center gap-2">
+        <button class="button-hour text-5xl" (click)="pickerE.open()">{{alarmaForm.get('horaDate')?.value | date :
+          'hh'}}</button>
+        <div class="flex flex-col gap-5 justify-center">
+          <div class="point-hour"></div>
+          <div class="point-hour"> </div>
+        </div>
+        <button class="button-hour text-5xl" (click)="pickerE.open()">{{alarmaForm.get('horaDate')?.value | date :
+          'mm'}}</button>
+        <div>
+          <mat-icon class="absolute">{{iconoHora()}}</mat-icon>
+        </div>
+      </div>
+    </ng-template>
 
     <app-selector-dias-concurrentes formControlName="dias"></app-selector-dias-concurrentes>
 
     <mat-form-field appearance="outline" hintLabel="Ingrese un nombre para la alarma">
       <mat-label>Nombre Alarma</mat-label>
-      <input matInput placeholder="">
+      <input matInput placeholder="" formControlName="nombre">
       <button mat-icon-button matSuffix type="button">
         <mat-icon class="material-symbols-rounded">mic</mat-icon>
       </button>
       <mat-hint align="end">0/45</mat-hint>
     </mat-form-field>
 
-    <mat-form-field appearance="outline">
+    <mat-form-field appearance="outline" (click)="showMarkersModal()" (keydown.enter)="showMarkersModal()">
       <mat-label>Tipo Marcador</mat-label>
-      <mat-select>
-        <mat-option value="one">First option</mat-option>
-        <mat-option value="two">Second option</mat-option>
-      </mat-select>
+      <input matInput placeholder="" [value]="alarmaForm.get('marcador')?.value?.nombre">
+      <mat-icon matSuffix class="material-symbols-rounded">arrow_drop_down</mat-icon>
       <mat-hint>Seleccione un tipo de marcador</mat-hint>
     </mat-form-field>
 
-    <mat-list>
-      <div class="title-container">
-        <mat-icon class="material-symbols-rounded">alarm</mat-icon>
-        <span>Pausas Alarma</span>
-      </div>
-      <mat-card appearance="outlined">
-        <mat-list-item>
-          <div class="item-container">
-            <span>01/02/2025 - 05/02/2025</span>
-            <button mat-icon-button matSuffix type="button">
-              <mat-icon class="material-symbols-rounded">delete</mat-icon>
-            </button>
-          </div>
-        </mat-list-item>
-        <mat-list-item>
-          <div class="item-container">
-            <span>01/02/2025 - 05/02/2025</span>
-            <button mat-icon-button matSuffix type="button">
-              <mat-icon class="material-symbols-rounded">delete</mat-icon>
-            </button>
-          </div>
-        </mat-list-item>
-        <mat-list-item>
-          <div class="item-container">
-            <span>01/02/2025 - 05/02/2025</span>
-            <button mat-icon-button matSuffix type="button">
-              <mat-icon class="material-symbols-rounded" >delete</mat-icon>
-            </button>
-          </div>
-        </mat-list-item>
-      </mat-card>
-    </mat-list>
-    <div class="float-button">
-      <button mat-raised-button color="accent">+ Pausa</button>
+    <div class="title-container">
+      <mat-icon class="material-symbols-rounded">alarm</mat-icon>
+      <span>Pausas Alarma</span>
     </div>
+
+    <mat-card appearance="outlined" class="scroll">
+      <mat-list>
+        <mat-list-item *ngFor="let pausa of alarmaForm.get('pausas')?.value">
+          <div class="item-container">
+            <span>{{pausa.fechaInicial|date:'dd/MM/yyyy'}} - {{pausa.fechaFinal|date:'dd/MM/yyyy'}}</span>
+            <button mat-icon-button matSuffix type="button" (click)="showDeleteModal(alarmaForm.value, pausa)">
+              <mat-icon class="material-symbols-rounded">delete</mat-icon>
+            </button>
+          </div>
+        </mat-list-item>
+        <mat-list-item></mat-list-item>
+        <div class="float-button">
+          <div style="display: none;">
+            <mat-date-range-input [rangePicker]="picker">
+              <input matStartDate [(ngModel)]="startDate" [ngModelOptions]="{standalone: true}" placeholder="Start date">
+              <input matEndDate [(ngModel)]="endDate" [ngModelOptions]="{standalone: true}" placeholder="End date">
+            </mat-date-range-input>
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-date-range-picker touchUi #picker (closed)="addPause()"></mat-date-range-picker>
+          </div>
+          <button mat-raised-button color="accent" (click)="picker.open()">
+            <mat-icon class="material-symbols-rounded">add</mat-icon>
+            <span class="text-sm">Pausa</span>
+          </button>
+        </div>
+      </mat-list>
+    </mat-card>
+
+    <ngx-mat-timepicker color="primary" #pickerE (timeSet)="cambioFecha($event)"></ngx-mat-timepicker>
   </form>
 </ion-content>

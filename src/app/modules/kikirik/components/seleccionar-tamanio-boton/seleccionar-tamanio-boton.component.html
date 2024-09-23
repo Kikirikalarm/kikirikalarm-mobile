@@ -1,3 +1,24 @@
-<p>
-  seleccionar-tamanio-boton works!
-</p>
+<span mat-dialog-title class="title-modal">Seleccionar Tamaño</span>
+<div mat-dialog-content>
+  <div class="flex w-full items-center justify-center mb-1">
+    <button mat-icon-button (click)="changeSizeButton(-5)">
+      <mat-icon class="material-symbols-rounded">remove</mat-icon>
+    </button>
+    <mat-slider min="10" max="45" step="5">
+      <input matSliderThumb [(ngModel)]="tamanioBoton">
+    </mat-slider>
+    <button mat-icon-button (click)="changeSizeButton(5)">
+      <mat-icon class="material-symbols-rounded">add</mat-icon>
+    </button>
+  </div>
+  <mat-card appearance="outlined" class="h-52">
+    <div class="flex h-full w-full items-center justify-center">
+      <button class="boton-alarma" [ngStyle]="{'font-size':tamanioBoton+'px'}">Detener</button>
+    </div>
+  </mat-card>
+</div>
+<div mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close class="text-sm" color="primary" (click)="onCloseModal()">CERRAR</button>
+</div>
+
+

@@ -29,7 +29,7 @@ export class AlarmasComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.formato = this.configService.configAlarmService!.formatoHora || 12;
+    this.formato = this.configService.configAlarm!.formatoHora || 12;
     this.obtenerAlarmas();
   }
 

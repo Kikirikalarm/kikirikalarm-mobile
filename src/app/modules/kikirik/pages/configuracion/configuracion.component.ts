@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { LoginService } from 'src/app/modules/login/services/login.service';
@@ -6,20 +6,30 @@ import { OptionsConfirm } from 'src/app/shared/models/dialog-confirm-options.mod
 import { DialogConfirmServiceService } from 'src/app/shared/services/dialog-confirm-service.service';
 import { SeleccionarFormatoHoraComponent } from '../../components/seleccionar-formato-hora/seleccionar-formato-hora.component';
 import { SeleccionarDuracionNotificacionComponent } from '../../components/seleccionar-duracion-notificacion/seleccionar-duracion-notificacion.component';
+import { SeleccionarTamanioBotonComponent } from '../../components/seleccionar-tamanio-boton/seleccionar-tamanio-boton.component';
+import { ConfigService } from '../../services/config.service';
+import { ConfigAlarma } from '../../models/config-alarma.model';
 
 @Component({
   selector: 'app-configuracion',
   templateUrl: './configuracion.component.html',
   styleUrls: ['./configuracion.component.scss'],
 })
-export class ConfiguracionComponent {
+export class ConfiguracionComponent implements OnInit {
+
+  configuracion:ConfigAlarma|null = null;
 
   constructor(
     private LoginService: LoginService,
     private dialogConfirmServiceService: DialogConfirmServiceService,
     private router: Router,
-    public dialog: MatDialog
+    private dialog: MatDialog,
+    private service: ConfigService
   ) { }
+
+  ngOnInit(): void {
+    this.configuracion = this.service.configAlarm;
+  }
 
   async showLogoutModal() {
     let options: OptionsConfirm = {
@@ -34,22 +44,50 @@ export class ConfiguracionComponent {
     }
   }
 
-  showHourFormatModal(){
+  showHourFormatModal() {
     const dialogRef = this.dialog.open(SeleccionarFormatoHoraComponent, {
-      data: 12,
+      data: this.configuracion?.formatoHora,
       autoFocus: false,
       width: "280px"
     });
-    dialogRef.afterClosed().subscribe(result => {if(result){console.log("formato slee",result)}})   
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        console.log("config", result)
+        this.configuracion!.formatoHora = result;
+        this.service.configAlarm = this.configuracion!;
+      }
+    })
   }
 
-  showDurationModal(){
+  showDurationModal() {
     const dialogRef = this.dialog.open(SeleccionarDuracionNotificacionComponent, {
-      data: 10,
+      data: this.configuracion?.duracionAlarma,
       autoFocus: false,
       width: "280px"
     });
-    dialogRef.afterClosed().subscribe(result => {if(result){console.log("formato slee",result)}})   
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        console.log("config", result)
+        this.configuracion!.duracionAlarma = result;
+        this.service.configAlarm = this.configuracion!;
+      }
+    })
+  }
+
+  showButtonSizeDialog() {
+    console.log("modal botones");
+    const dialogRef = this.dialog.open(SeleccionarTamanioBotonComponent, {
+      data: this.configuracion?.tamConfigButton,
+      autoFocus: false,
+      width: "280px"
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        console.log("config", result)
+        this.configuracion!.tamConfigButton = result;
+        this.service.configAlarm = this.configuracion!;
+      }
+    })
   }
 
   private logout() {

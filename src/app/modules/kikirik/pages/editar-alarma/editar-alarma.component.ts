@@ -21,7 +21,7 @@ export class EditarAlarmaComponent implements OnInit {
 
   @Input() alarma?: Alarma;
   alarmaForm: FormGroup = this.fb.group({});
-  formatoHora: 12 | 24 = this.configService.configAlarmService!.formatoHora || 12;
+  formatoHora: 12 | 24 = this.configService.configAlarm!.formatoHora || 12;
   startDate:Date|null = null; 
   endDate:Date|null = null;
 

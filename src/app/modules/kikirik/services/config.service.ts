@@ -9,7 +9,7 @@ import { lastValueFrom } from 'rxjs';
 export class ConfigService {
 
   private jsonUrl = 'assets/kikirik/data/config.json';
-  private configAlarm: ConfigAlarma | null = null;
+  private _configAlarm: ConfigAlarma | null = null;
 
   constructor(private http: HttpClient) { }
 
@@ -19,11 +19,11 @@ export class ConfigService {
     return this.configAlarm;
   }
 
-  public get configAlarmService(): ConfigAlarma | null {
-    return this.configAlarm;
+  public get configAlarm(): ConfigAlarma | null {
+    return this._configAlarm;
   }
 
-  public set configAlarmService(value: ConfigAlarma | null) {
-    this.configAlarm = value;
+  public set configAlarm(value: ConfigAlarma | null) {
+    this._configAlarm = value;
   }
 }
